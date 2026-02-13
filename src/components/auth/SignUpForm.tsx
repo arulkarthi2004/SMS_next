@@ -9,6 +9,8 @@ import React, { useState } from "react";
 export default function SignUpForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
+  const [role, setRole] = useState("student");
+
   return (
     <div className="flex flex-col flex-1 lg:w-1/2 w-full overflow-y-auto no-scrollbar">
       <div className="w-full max-w-md sm:pt-10 mx-auto mb-5">
@@ -31,7 +33,7 @@ export default function SignUpForm() {
             </p>
           </div>
           <div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
+            {/* <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-5">
               <button className="inline-flex items-center justify-center gap-3 py-3 text-sm font-normal text-gray-700 transition-colors bg-gray-100 rounded-lg px-7 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/90 dark:hover:bg-white/10">
                 <svg
                   width="20"
@@ -72,8 +74,8 @@ export default function SignUpForm() {
                 </svg>
                 Sign up with X
               </button>
-            </div>
-            <div className="relative py-3 sm:py-5">
+            </div> */}
+            {/* <div className="relative py-3 sm:py-5">
               <div className="absolute inset-0 flex items-center">
                 <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
               </div>
@@ -82,11 +84,11 @@ export default function SignUpForm() {
                   Or
                 </span>
               </div>
-            </div>
+            </div> */}
             <form>
               <div className="space-y-5">
-                <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                  {/* <!-- First Name --> */}
+                {/* <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
+                 
                   <div className="sm:col-span-1">
                     <Label>
                       First Name<span className="text-error-500">*</span>
@@ -98,7 +100,7 @@ export default function SignUpForm() {
                       placeholder="Enter your first name"
                     />
                   </div>
-                  {/* <!-- Last Name --> */}
+                  
                   <div className="sm:col-span-1">
                     <Label>
                       Last Name<span className="text-error-500">*</span>
@@ -110,7 +112,7 @@ export default function SignUpForm() {
                       placeholder="Enter your last name"
                     />
                   </div>
-                </div>
+                </div> */}
                 {/* <!-- Email --> */}
                 <div>
                   <Label>
@@ -146,7 +148,7 @@ export default function SignUpForm() {
                   </div>
                 </div>
                 {/* <!-- Checkbox --> */}
-                <div className="flex items-center gap-3">
+                {/* <div className="flex items-center gap-3">
                   <Checkbox
                     className="w-5 h-5"
                     checked={isChecked}
@@ -162,6 +164,55 @@ export default function SignUpForm() {
                       Privacy Policy
                     </span>
                   </p>
+                </div> */}
+                <div>
+                  <Label>
+                    Select Role<span className="text-error-500">*</span>
+                  </Label>
+
+                  <div className="grid grid-cols-1 gap-3 mt-2 sm:grid-cols-3">
+                    {[
+                      {
+                        value: "student",
+                        title: "Student",
+                        desc: "Create and manage your profile card",
+                      },
+                      {
+                        value: "teacher",
+                        title: "Teacher",
+                        desc: "View assigned students",
+                      },
+                      {
+                        value: "client",
+                        title: "Client",
+                        desc: "View categorized students",
+                      },
+                    ].map((item) => (
+                      <button
+                        type="button"
+                        key={item.value}
+                        onClick={() => setRole(item.value)}
+                        className={`text-left rounded-xl border p-4 transition-all duration-200
+                          ${
+                            role === item.value
+                              ? "border-brand-500 bg-brand-50 dark:bg-brand-500/10"
+                              : "border-gray-200 hover:border-brand-300 dark:border-gray-700 dark:hover:border-brand-500/40"
+                          }
+                        `}
+                      >
+                        <div className="flex items-start justify-between">
+                          <div>
+                            <p className="font-semibold text-gray-800 dark:text-white">
+                              {item.title}
+                            </p>
+                            <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
+                              {item.desc}
+                            </p>
+                          </div>
+                        </div>
+                      </button>
+                    ))}
+                  </div>
                 </div>
                 {/* <!-- Button --> */}
                 <div>

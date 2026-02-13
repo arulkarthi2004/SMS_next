@@ -1,21 +1,28 @@
 import React, { FC } from "react";
 
-interface InputProps {
-  type?: "text" | "number" | "email" | "password" | "date" | "time" | string;
-  id?: string;
-  name?: string;
-  placeholder?: string;
-  defaultValue?: string | number;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  className?: string;
-  min?: string;
-  max?: string;
-  step?: number;
-  disabled?: boolean;
+// interface InputProps {
+//   type?: "text" | "number" | "email" | "password" | "date" | "time" | string;
+//   id?: string;
+//   name?: string;
+//   placeholder?: string;
+//   defaultValue?: string | number;
+//   value?: string | number;
+//   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+//   className?: string;
+//   min?: string;
+//   max?: string;
+//   step?: number;
+//   disabled?: boolean;
+//   success?: boolean;
+//   error?: boolean;
+//   hint?: string; // Optional hint text
+// }
+interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   success?: boolean;
   error?: boolean;
-  hint?: string; // Optional hint text
+  hint?: string;
 }
+
 
 const Input: FC<InputProps> = ({
   type = "text",
