@@ -16,6 +16,7 @@ import {
   PlugInIcon,
   TableIcon,
   UserCircleIcon,
+  SettingsIcon,
 } from "../icons/index";
 import SidebarWidget from "./SidebarWidget";
 
@@ -44,16 +45,29 @@ const navItems: NavItem[] = [
     path: "/profile",
   },
 
-  // {
-  //   name: "Forms",
-  //   icon: <ListIcon />,
-  //   subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
-  // },
   {
-    name: "Approval",
-    icon: <TableIcon />,
-    subItems: [{ name: "Approval List", path: "/approval", pro: false }],
+    name: "Forms",
+    icon: <ListIcon />,
+    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
   },
+    {
+    name: "Management",
+    icon: <TableIcon />,
+    subItems: [{ name: "Add Student", path: "/add-student", pro: false },{ name: "Student Approval", path: "/approval-student", pro: false },{ name: "Add Teacher", path: "/add-teacher", pro: false },{ name: "Add Client", path: "/add-client", pro: false }],
+  },
+    {
+    name: "Settings",
+    icon: <SettingsIcon className="w-6 h-6" />,
+    subItems: [
+    { name: "College", path: "/college" },
+    { name: "Department", path: "/department" },
+    { name: "Japanese Level", path: "/japanese-level" },
+    { name: "Tags", path: "/tags" },
+    { name: "Classification", path: "/classification" },
+    { name: "Status", path: "/status" },
+  ],
+  },
+
   // {
   //   name: "Pages",
   //   icon: <PageIcon />,
