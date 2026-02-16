@@ -81,8 +81,8 @@ export default function TeacherTable({ data, onEdit, onDelete }: Props) {
                   <TableCell className="px-4 py-8 text-theme-sm text-gray-400 dark:text-gray-500">
                     Add your first teacher from the button above.
                   </TableCell>
-                  <TableCell className="px-4 py-8" />
-                  <TableCell className="px-4 py-8" />
+                  <TableCell className="px-4 py-8">{null}</TableCell>
+                  <TableCell className="px-4 py-8">{null}</TableCell>
                 </TableRow>
               ) : (
                 paginatedData.map((row) => (
