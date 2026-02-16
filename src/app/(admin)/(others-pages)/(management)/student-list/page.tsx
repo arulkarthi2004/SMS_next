@@ -2,10 +2,10 @@
 
 import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
 import PageBreadcrumb from "@/components/common/PageBreadCrumb";
 import ComponentCard from "@/components/common/ComponentCard";
 import Button from "@/components/ui/button/Button";
+import { useLanguage } from "@/context/LanguageContext";
 import {
   ZoomInIcon,
   ZoomOutIcon,
@@ -152,7 +152,7 @@ const students: Student[] = [
 ];
 
 export default function StudentListPage() {
-  const router = useRouter();
+  const { t } = useLanguage();
   const [search, setSearch] = useState("");
   const [collegeFilter, setCollegeFilter] = useState("all");
   const [departmentFilter, setDepartmentFilter] = useState("all");
@@ -233,17 +233,14 @@ export default function StudentListPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Student List" />
+      <PageBreadcrumb pageTitle={t("studentList.pageTitle")} />
 
-      <ComponentCard
-        title="Student Interactive Cards"
-        desc="Filter students and open detailed flip cards."
-      >
+      <ComponentCard title={t("studentList.title")} desc={t("studentList.desc")}>
         <div className="mb-6 grid grid-cols-1 gap-3 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.05] dark:bg-white/[0.03] md:grid-cols-2 xl:grid-cols-6">
           <input
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            placeholder="Search by name"
+            placeholder={t("studentList.searchPlaceholder")}
             className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90"
           />
 
@@ -252,7 +249,7 @@ export default function StudentListPage() {
             onChange={(e) => setCollegeFilter(e.target.value)}
             className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90"
           >
-            <option value="all">All Colleges</option>
+            <option value="all">{t("studentList.allColleges")}</option>
             {collegeOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -265,7 +262,7 @@ export default function StudentListPage() {
             onChange={(e) => setDepartmentFilter(e.target.value)}
             className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90"
           >
-            <option value="all">All Departments</option>
+            <option value="all">{t("studentList.allDepartments")}</option>
             {departmentOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -278,7 +275,7 @@ export default function StudentListPage() {
             onChange={(e) => setLevelFilter(e.target.value)}
             className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90"
           >
-            <option value="all">All Levels</option>
+            <option value="all">{t("studentList.allLevels")}</option>
             {levelOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -291,7 +288,7 @@ export default function StudentListPage() {
             onChange={(e) => setStatusFilter(e.target.value)}
             className="h-11 w-full rounded-lg border border-gray-300 px-3 text-sm focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90"
           >
-            <option value="all">All Status</option>
+            <option value="all">{t("studentList.allStatus")}</option>
             {statusOptions.map((option) => (
               <option key={option} value={option}>
                 {option}
@@ -300,13 +297,13 @@ export default function StudentListPage() {
           </select>
 
           <Button size="sm" variant="outline" onClick={resetFilters}>
-            Reset Filters
+            {t("common.resetFilters")}
           </Button>
         </div>
 
         {filteredStudents.length === 0 ? (
           <div className="rounded-xl border border-dashed border-gray-300 p-8 text-center text-sm text-gray-500 dark:border-gray-700 dark:text-gray-400">
-            No students match your filters.
+            {t("studentList.noResults")}
           </div>
         ) : (
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4">
@@ -327,8 +324,8 @@ export default function StudentListPage() {
                 <button
                   type="button"
                   onClick={() => openExpandedCard(student)}
-                  className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-800 transition hover:scale-105 hover:bg-white"
-                  aria-label={`Expand ${student.name}`}
+                  className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-800 transition hover:scale-105 hover:bg-white dark:border-gray-700 dark:bg-gray-900/85 dark:text-white dark:hover:bg-gray-900"
+                  aria-label={`${t("studentList.zoomIn")} ${student.name}`}
                 >
                   <ZoomInIcon className="h-4 w-4" />
                 </button>
@@ -374,16 +371,15 @@ export default function StudentListPage() {
                   <div className="absolute right-2 top-2 flex items-center gap-1.5">
                     <button
                       type="button"
-                      onClick={() => router.push("/add-student")}
                       className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-                      aria-label="Edit student"
+                      aria-label={t("studentList.edit")}
                     >
                       <PencilIcon />
                     </button>
                     <button
                       type="button"
                       className="inline-flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 bg-white text-gray-600 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600"
-                      aria-label="Delete student"
+                      aria-label={t("studentList.delete")}
                     >
                       <TrashBinIcon />
                     </button>
@@ -403,8 +399,8 @@ export default function StudentListPage() {
                     </div>
 
                     <div className="grid grid-cols-2 gap-1 border-b border-brand-300 pb-2 text-center text-base text-gray-700 dark:text-gray-200">
-                      <p>College</p>
-                      <p>Graduation year</p>
+                      <p>{t("studentList.college")}</p>
+                      <p>{t("studentList.graduationYear")}</p>
                       <p className="text-base font-medium">
                         {selectedStudent.college.url ? (
                           <a
@@ -427,7 +423,9 @@ export default function StudentListPage() {
                     </p>
 
                     <div className="flex items-center justify-center gap-2 text-base">
-                      <span className="font-semibold text-gray-800 dark:text-gray-100">日本語レベル :</span>
+                      <span className="font-semibold text-gray-800 dark:text-gray-100">
+                        {t("studentList.japaneseLevel")}
+                      </span>
                       <span className="rounded-md bg-brand-500 px-2.5 py-1 text-base text-white">
                         {selectedStudent.japaneseLevel}
                       </span>
@@ -438,7 +436,7 @@ export default function StudentListPage() {
 
                     <div className="rounded-lg border border-gray-200 bg-white p-2.5 text-center dark:border-gray-600 dark:bg-gray-700">
                       <p className="mb-1 inline-block border border-brand-500 px-3 py-0.5 text-base text-brand-500 dark:border-brand-300 dark:text-brand-300">
-                        自己紹介
+                        {t("studentList.selfIntro")}
                       </p>
                       <p className="text-sm leading-5 text-gray-700 dark:text-gray-200">
                         {selectedStudent.selfIntro}
@@ -452,7 +450,7 @@ export default function StudentListPage() {
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex h-12 w-12 items-center justify-center rounded-sm bg-white text-sm font-semibold text-[#0a66c2] hover:bg-gray-100 dark:bg-gray-200"
-                          aria-label="Facebook"
+                          aria-label={t("studentList.facebook")}
                         >
                           f
                         </a>
@@ -463,7 +461,7 @@ export default function StudentListPage() {
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex h-11 w-11 items-center justify-center rounded-sm bg-white text-sm font-semibold text-[#0a66c2] hover:bg-gray-100 dark:bg-gray-200"
-                          aria-label="LinkedIn"
+                          aria-label={t("studentList.linkedIn")}
                         >
                           in
                         </a>
@@ -474,7 +472,7 @@ export default function StudentListPage() {
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex h-11 w-11 items-center justify-center rounded-sm bg-white text-sm font-semibold text-[#d62976] hover:bg-gray-100 dark:bg-gray-200"
-                          aria-label="Instagram"
+                          aria-label={t("studentList.instagram")}
                         >
                           ig
                         </a>
@@ -485,7 +483,7 @@ export default function StudentListPage() {
                           target="_blank"
                           rel="noreferrer"
                           className="inline-flex h-11 w-11 items-center justify-center rounded-sm bg-white text-sm font-semibold text-black hover:bg-gray-100 dark:bg-gray-200"
-                          aria-label="X"
+                          aria-label={t("studentList.x")}
                         >
                           x
                         </a>
@@ -496,12 +494,11 @@ export default function StudentListPage() {
                   <button
                     type="button"
                     onClick={closeExpandedCard}
-                    className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-800 transition hover:scale-105 hover:bg-white"
-                    aria-label="Zoom out"
+                    className="absolute bottom-3 right-3 inline-flex h-9 w-9 items-center justify-center rounded-full border border-gray-200 bg-white/90 text-gray-800 transition hover:scale-105 hover:bg-white dark:border-gray-700 dark:bg-gray-900/85 dark:text-white dark:hover:bg-gray-900"
+                    aria-label={t("studentList.zoomOut")}
                   >
-                    <ZoomOutIcon className="h-4 w-4" />
+                    <ZoomOutIcon className="h-4 w-4 " />
                   </button>
-
                 </div>
               </div>
             </div>
@@ -511,3 +508,4 @@ export default function StudentListPage() {
     </>
   );
 }
+

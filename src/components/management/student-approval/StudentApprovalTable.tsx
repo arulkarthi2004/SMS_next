@@ -4,6 +4,7 @@ import { useMemo, useState } from "react";
 import Badge from "@/components/ui/badge/Badge";
 import Button from "@/components/ui/button/Button";
 import Pagination from "@/components/tables/Pagination";
+import { useLanguage } from "@/context/LanguageContext";
 
 export type ApprovalStatus = "Pending" | "Approved" | "Rejected";
 
@@ -31,6 +32,21 @@ interface Props {
 
 const ITEMS_PER_PAGE = 10;
 
+const getApprovalStatusLabel = (
+  status: ApprovalStatus,
+  t: ReturnType<typeof useLanguage>["t"]
+) => {
+  if (status === "Approved") {
+    return t("studentApproval.statuses.approved");
+  }
+
+  if (status === "Rejected") {
+    return t("studentApproval.statuses.rejected");
+  }
+
+  return t("studentApproval.statuses.pending");
+};
+
 const getStatusBadgeColor = (status: ApprovalStatus) => {
   if (status === "Approved") {
     return "success" as const;
@@ -47,10 +63,14 @@ function TagsPicker({
   selected,
   options,
   onChange,
+  selectLabel,
+  doneLabel,
 }: {
   selected: string[];
   options: string[];
   onChange: (next: string[]) => void;
+  selectLabel: string;
+  doneLabel: string;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -70,7 +90,7 @@ function TagsPicker({
         onClick={() => setOpen((prev) => !prev)}
         className="h-10 w-full rounded-lg border border-gray-300 px-3 text-left text-sm text-gray-800 dark:border-gray-700 dark:text-white/90"
       >
-        {selected.length > 0 ? selected.join(", ") : "Select tags"}
+        {selected.length > 0 ? selected.join(", ") : selectLabel}
       </button>
 
       {open ? (
@@ -103,7 +123,7 @@ function TagsPicker({
               onClick={() => setOpen(false)}
               className="!px-3 !py-2"
             >
-              Done
+              {doneLabel}
             </Button>
           </div>
         </div>
@@ -120,6 +140,7 @@ export default function StudentApprovalTable({
   statusOptions,
   tagOptions,
 }: Props) {
+  const { t } = useLanguage();
   const [search, setSearch] = useState("");
   const [statusFilter, setStatusFilter] = useState<"All" | ApprovalStatus>("All");
   const [currentPage, setCurrentPage] = useState(1);
@@ -163,7 +184,7 @@ export default function StudentApprovalTable({
             htmlFor="student-search"
             className="mb-1 block text-theme-xs font-medium text-gray-500 dark:text-gray-400"
           >
-            Search by ID or Name
+            {t("studentApproval.searchLabel")}
           </label>
           <input
             id="student-search"
@@ -172,7 +193,7 @@ export default function StudentApprovalTable({
               setSearch(e.target.value);
               setCurrentPage(1);
             }}
-            placeholder="Search students"
+            placeholder={t("studentApproval.searchPlaceholder")}
             className="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:text-white/90 dark:focus:border-brand-800"
           />
         </div>
@@ -182,7 +203,7 @@ export default function StudentApprovalTable({
             htmlFor="status-filter"
             className="mb-1 block text-theme-xs font-medium text-gray-500 dark:text-gray-400"
           >
-            Approval Status
+            {t("studentApproval.approvalStatus")}
           </label>
           <select
             id="status-filter"
@@ -193,10 +214,10 @@ export default function StudentApprovalTable({
             }}
             className="h-11 w-full rounded-lg border border-gray-300 bg-transparent px-4 py-2.5 text-sm text-gray-800 shadow-theme-xs focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:text-white/90 dark:focus:border-brand-800"
           >
-            <option value="All">All</option>
-            <option value="Pending">Pending</option>
-            <option value="Approved">Approved</option>
-            <option value="Rejected">Rejected</option>
+            <option value="All">{t("studentApproval.all")}</option>
+            <option value="Pending">{t("studentApproval.statuses.pending")}</option>
+            <option value="Approved">{t("studentApproval.statuses.approved")}</option>
+            <option value="Rejected">{t("studentApproval.statuses.rejected")}</option>
           </select>
         </div>
       </div>
@@ -204,7 +225,7 @@ export default function StudentApprovalTable({
       <div className="space-y-3">
         {paginatedData.length === 0 ? (
           <div className="rounded-lg border border-gray-200 p-4 text-sm text-gray-500 dark:border-white/[0.05] dark:text-gray-400">
-            No students found. Try changing search or filter.
+            {t("studentApproval.noStudents")}
           </div>
         ) : (
           paginatedData.map((row) => (
@@ -224,14 +245,14 @@ export default function StudentApprovalTable({
                 </div>
 
                 <Badge size="sm" color={getStatusBadgeColor(row.approvalStatus)}>
-                  {row.approvalStatus}
+                  {getApprovalStatusLabel(row.approvalStatus, t)}
                 </Badge>
               </div>
 
               <div className="grid grid-cols-1 gap-3 lg:grid-cols-3">
                 <div>
                   <p className="mb-1 text-theme-xs text-gray-500 dark:text-gray-400">
-                    Classification
+                    {t("studentApproval.classification")}
                   </p>
                   <select
                     value={row.classification}
@@ -249,7 +270,9 @@ export default function StudentApprovalTable({
                 </div>
 
                 <div>
-                  <p className="mb-1 text-theme-xs text-gray-500 dark:text-gray-400">Status</p>
+                  <p className="mb-1 text-theme-xs text-gray-500 dark:text-gray-400">
+                    {t("studentApproval.status")}
+                  </p>
                   <select
                     value={row.status}
                     onChange={(e) => onUpdateDetails(row.id, { status: e.target.value })}
@@ -264,11 +287,15 @@ export default function StudentApprovalTable({
                 </div>
 
                 <div>
-                  <p className="mb-1 text-theme-xs text-gray-500 dark:text-gray-400">Tags</p>
+                  <p className="mb-1 text-theme-xs text-gray-500 dark:text-gray-400">
+                    {t("studentApproval.tags")}
+                  </p>
                   <TagsPicker
                     selected={row.tags}
                     options={tagOptions}
                     onChange={(next) => onUpdateDetails(row.id, { tags: next })}
+                    selectLabel={t("studentApproval.selectTags")}
+                    doneLabel={t("studentApproval.done")}
                   />
                 </div>
               </div>
@@ -280,7 +307,7 @@ export default function StudentApprovalTable({
                   disabled={row.approvalStatus === "Approved"}
                   className="w-full sm:w-auto !px-3 !py-2"
                 >
-                  Approve
+                  {t("studentApproval.approve")}
                 </Button>
                 <Button
                   size="sm"
@@ -289,7 +316,7 @@ export default function StudentApprovalTable({
                   disabled={row.approvalStatus === "Rejected"}
                   className="w-full sm:w-auto !px-3 !py-2"
                 >
-                  Reject
+                  {t("studentApproval.reject")}
                 </Button>
               </div>
             </div>

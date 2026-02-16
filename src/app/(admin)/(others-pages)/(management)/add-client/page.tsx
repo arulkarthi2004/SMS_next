@@ -8,6 +8,7 @@ import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
 import ClientTable from "@/components/management/client/ClientTable";
 import ClientModal from "@/components/management/client/ClientModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Client {
   id: string;
@@ -17,6 +18,7 @@ interface Client {
 }
 
 export default function AddClientPage() {
+  const { t } = useLanguage();
   const [clients, setClients] = useState<Client[]>([]);
   const [editing, setEditing] = useState<Client | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -53,15 +55,12 @@ export default function AddClientPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Add Client" />
+      <PageBreadcrumb pageTitle={t("addClient.pageTitle")} />
 
-      <ComponentCard
-        title="Client Management"
-        desc="Create and manage client records."
-      >
+      <ComponentCard title={t("addClient.title")} desc={t("addClient.desc")}>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
-            Add Client
+            {t("addClient.add")}
           </Button>
         </div>
 
