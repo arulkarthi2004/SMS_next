@@ -1,0 +1,140 @@
+{
+  "brand": {
+    "sms": "SMS"
+  },
+  "common": {
+    "home": "Home",
+    "menu": "Menu",
+    "backToDashboard": "Back to dashboard",
+    "resetFilters": "Reset Filters",
+    "close": "Close"
+  },
+  "header": {
+    "searchPlaceholder": "Search or type command...",
+    "language": "Language",
+    "english": "English",
+    "japanese": "Japanese"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "studentList": "Student List",
+    "management": "Management",
+    "addStudent": "Add Student",
+    "studentApproval": "Student Approval",
+    "addTeacher": "Add Teacher",
+    "addClient": "Add Client",
+    "settings": "Settings",
+    "college": "College",
+    "department": "Department",
+    "japaneseLevel": "Japanese Level",
+    "tags": "Tags",
+    "classification": "Classification",
+    "status": "Status"
+  },
+  "auth": {
+    "layoutTagline": "Platform for managing student data, roles, and academic operations efficiently.",
+    "signin": {
+      "title": "Sign In",
+      "subtitle": "Enter your email and password to sign in!",
+      "email": "Email",
+      "password": "Password",
+      "emailPlaceholder": "info@gmail.com",
+      "passwordPlaceholder": "Enter your password",
+      "keepLoggedIn": "Keep me logged in",
+      "forgotPassword": "Forgot password?",
+      "submit": "Sign in",
+      "noAccount": "Don't have an account?",
+      "signUp": "Sign Up"
+    },
+    "signup": {
+      "title": "Sign Up",
+      "subtitle": "Enter your details to sign up!",
+      "firstName": "First Name",
+      "lastName": "Last Name",
+      "firstNamePlaceholder": "Enter your first name",
+      "lastNamePlaceholder": "Enter your last name",
+      "email": "Email",
+      "password": "Password",
+      "emailPlaceholder": "Enter your email",
+      "passwordPlaceholder": "Enter your password",
+      "submit": "Sign Up",
+      "alreadyAccount": "Already have an account?",
+      "signIn": "Sign In"
+    }
+  },
+  "addStudent": {
+    "pageTitle": "Add Student",
+    "cardTitle": "Student Registration",
+    "cardDesc": "Fields marked with * are required.",
+    "submitSuccess": "Student details submitted successfully.",
+    "saveStudent": "Save Student",
+    "fields": {
+      "studentPhoto": "Student Photo",
+      "name": "Name",
+      "gender": "Gender",
+      "age": "Age",
+      "college": "College",
+      "collegeUrl": "College URL",
+      "department": "Department",
+      "graduationYear": "Graduation Year",
+      "dob": "DOB",
+      "japaneseLevel": "Japanese Level",
+      "selfIntro": "Self Intro",
+      "linkedInUrl": "LinkedIn URL",
+      "gitUrl": "Git URL",
+      "portfolioUrl": "Portfolio URL",
+      "email": "Email ID",
+      "whatsapp": "WhatsApp No."
+    },
+    "placeholders": {
+      "name": "Enter student name",
+      "age": "Enter age",
+      "collegeUrl": "https://college.example",
+      "graduationYear": "Enter graduation year",
+      "dob": "YYYY-MM-DD",
+      "selfIntro": "Write self introduction",
+      "linkedInUrl": "https://linkedin.com/in/username",
+      "gitUrl": "https://github.com/username",
+      "portfolioUrl": "https://portfolio.example",
+      "email": "student@example.com",
+      "whatsapp": "+1 555 555 5555"
+    },
+    "select": {
+      "gender": "Select gender",
+      "male": "Male",
+      "female": "Female",
+      "other": "Other",
+      "college": "Select college",
+      "department": "Select department",
+      "japaneseLevel": "Select Japanese level"
+    },
+    "errors": {
+      "photoRequired": "Student photo is required.",
+      "nameRequired": "Student name is required.",
+      "genderRequired": "Gender is required.",
+      "collegeRequired": "College is required.",
+      "linkedInRequired": "LinkedIn URL is required.",
+      "linkedInInvalid": "LinkedIn URL must start with http:// or https://",
+      "emailRequired": "Email ID is required.",
+      "emailInvalid": "Enter a valid email address."
+    }
+  },
+  "studentList": {
+    "pageTitle": "Student List",
+    "title": "Student Interactive Cards",
+    "desc": "Filter students and open detailed flip cards.",
+    "searchPlaceholder": "Search by name",
+    "allColleges": "All Colleges",
+    "allDepartments": "All Departments",
+    "allLevels": "All Levels",
+    "allStatus": "All Status",
+    "noResults": "No students match your filters.",
+    "college": "College",
+    "graduationYear": "Graduation year",
+    "japaneseLevel": "Japanese Level :",
+    "selfIntro": "Self Introduction",
+    "edit": "Edit student",
+    "delete": "Delete student",
+    "zoomOut": "Zoom out"
+  }
+}

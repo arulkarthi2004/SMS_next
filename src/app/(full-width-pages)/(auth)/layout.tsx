@@ -5,6 +5,32 @@ import { ThemeProvider } from "@/context/ThemeContext";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { useLanguage } from "@/context/LanguageContext";
+
+function AuthBrand() {
+  const { t } = useLanguage();
+
+  return (
+    <div className="flex flex-col items-center max-w-xs">
+      <Link href="/" className="block mb-4">
+        <div className="inline-flex items-center gap-3">
+          <Image
+            width={32}
+            height={32}
+            src="/images/logo/logo-icon.svg"
+            alt="Logo"
+          />
+          <span className="text-3xl font-semibold tracking-wide text-white">
+            {t("brand.sms")}
+          </span>
+        </div>
+      </Link>
+      <p className="text-center text-gray-400 dark:text-white/60">
+        {t("auth.layoutTagline")}
+      </p>
+    </div>
+  );
+}
 
 export default function AuthLayout({
   children,
@@ -18,21 +44,8 @@ export default function AuthLayout({
           {children}
           <div className="lg:w-1/2 w-full h-full bg-brand-950 dark:bg-white/5 lg:grid items-center hidden">
             <div className="relative items-center justify-center  flex z-1">
-              {/* <!-- ===== Common Grid Shape Start ===== --> */}
               <GridShape />
-              <div className="flex flex-col items-center max-w-xs">
-                <Link href="/" className="block mb-4">
-                  <Image
-                    width={231}
-                    height={48}
-                    src="./images/logo/auth-logo.svg"
-                    alt="Logo"
-                  />
-                </Link>
-                <p className="text-center text-gray-400 dark:text-white/60">
-                  Free and Open-Source Tailwind CSS Admin Dashboard Template
-                </p>
-              </div>
+              <AuthBrand />
             </div>
           </div>
           <div className="fixed bottom-6 right-6 z-50 hidden sm:block">

@@ -6,13 +6,56 @@ import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import Label from "../form/Label";
 
-export default function UserInfoCard() {
+interface UserInfoCardProps {
+  user: {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    bio: string;
+    location: string;
+    socials: {
+      facebook: string;
+      x: string;
+      linkedin: string;
+      instagram: string;
+    };
+  };
+  onSave: (data: any) => void;
+}
+
+export default function UserInfoCard({ user, onSave }: UserInfoCardProps) {
   const { isOpen, openModal, closeModal } = useModal();
+  const [formData, setFormData] = React.useState(user);
+
+  React.useEffect(() => {
+    setFormData(user);
+  }, [user]);
+
   const handleSave = () => {
-    // Handle save logic here
-    console.log("Saving changes...");
+    onSave(formData);
     closeModal();
   };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    if (name.startsWith("socials.")) {
+      const socialKey = name.split(".")[1];
+      setFormData((prev) => ({
+        ...prev,
+        socials: {
+          ...prev.socials,
+          [socialKey as keyof typeof prev.socials]: value,
+        },
+      }));
+    } else {
+      setFormData((prev) => ({
+        ...prev,
+        [name]: value,
+      } as typeof user));
+    }
+  };
+
   return (
     <div className="p-5 border border-gray-200 rounded-2xl dark:border-gray-800 lg:p-6">
       <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
@@ -27,7 +70,7 @@ export default function UserInfoCard() {
                 First Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Musharof
+                {user.firstName}
               </p>
             </div>
 
@@ -36,7 +79,7 @@ export default function UserInfoCard() {
                 Last Name
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Chowdhury
+                {user.lastName}
               </p>
             </div>
 
@@ -45,7 +88,7 @@ export default function UserInfoCard() {
                 Email address
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                randomuser@pimjo.com
+                {user.email}
               </p>
             </div>
 
@@ -54,7 +97,7 @@ export default function UserInfoCard() {
                 Phone
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                +09 363 398 46
+                {user.phone}
               </p>
             </div>
 
@@ -63,7 +106,7 @@ export default function UserInfoCard() {
                 Bio
               </p>
               <p className="text-sm font-medium text-gray-800 dark:text-white/90">
-                Team Manager
+                {user.bio}
               </p>
             </div>
           </div>
@@ -114,20 +157,24 @@ export default function UserInfoCard() {
                     <Label>Facebook</Label>
                     <Input
                       type="text"
-                      defaultValue="https://www.facebook.com/PimjoHQ"
+                      name="socials.facebook"
+                      value={formData.socials.facebook}
+                      onChange={handleInputChange}
                     />
                   </div>
 
                   <div>
                     <Label>X.com</Label>
-                    <Input type="text" defaultValue="https://x.com/PimjoHQ" />
+                    <Input type="text" name="socials.x" value={formData.socials.x} onChange={handleInputChange} />
                   </div>
 
                   <div>
                     <Label>Linkedin</Label>
                     <Input
                       type="text"
-                      defaultValue="https://www.linkedin.com/company/pimjo"
+                      name="socials.linkedin"
+                      value={formData.socials.linkedin}
+                      onChange={handleInputChange}
                     />
                   </div>
 
@@ -135,7 +182,9 @@ export default function UserInfoCard() {
                     <Label>Instagram</Label>
                     <Input
                       type="text"
-                      defaultValue="https://instagram.com/PimjoHQ"
+                      name="socials.instagram"
+                      value={formData.socials.instagram}
+                      onChange={handleInputChange}
                     />
                   </div>
                 </div>
@@ -148,28 +197,29 @@ export default function UserInfoCard() {
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                   <div className="col-span-2 lg:col-span-1">
                     <Label>First Name</Label>
-                    <Input type="text" defaultValue="Musharof" />
+                    <Input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Last Name</Label>
-                    <Input type="text" defaultValue="Chowdhury" />
+                    <Input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Email Address</Label>
-                    <Input type="text" defaultValue="randomuser@pimjo.com" />
+                    <Input type="text" name="email" value={formData.email} onChange={handleInputChange} />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
                     <Label>Phone</Label>
-                    <Input type="text" defaultValue="+09 363 398 46" />
+                    <Input type="text" name="phone" value={formData.phone} onChange={handleInputChange} />
                   </div>
 
                   <div className="col-span-2">
                     <Label>Bio</Label>
-                    <Input type="text" defaultValue="Team Manager" />
+                    <Input type="text" name="bio" value={formData.bio} onChange={handleInputChange} />
                   </div>
+
                 </div>
               </div>
             </div>

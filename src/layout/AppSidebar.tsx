@@ -3,6 +3,7 @@ import React, { useEffect, useRef, useState,useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 import { useSidebar } from "../context/SidebarContext";
 import {
   BoxCubeIcon,
@@ -15,7 +16,7 @@ import {
   PieChartIcon,
   PlugInIcon,
   TableIcon,
-  UserCircleIcon,
+  SettingsIcon,
 } from "../icons/index";
 import SidebarWidget from "./SidebarWidget";
 
@@ -30,37 +31,55 @@ const navItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "Dashboard",
-    subItems: [{ name: "Ecommerce", path: "/", pro: false }],
+    path: "/",
+    // subItems: [{ name: "Ecommerce", path: "/", pro: false }],
   },
   {
-    icon: <CalenderIcon />,
-    name: "Calendar",
-    path: "/calendar",
-  },
-  {
-    icon: <UserCircleIcon />,
-    name: "User Profile",
-    path: "/profile",
-  },
-
-  {
-    name: "Forms",
     icon: <ListIcon />,
-    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+    name: "Student List",
+    path: "/student-list",
   },
+  // {
+  //   icon: <CalenderIcon />,
+  //   name: "Calendar",
+  //   path: "/calendar",
+  // },
+  // {
+  //   name: "Forms",
+  //   icon: <ListIcon />,
+  //   subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+  // },
   {
-    name: "Tables",
+    name: "Management",
     icon: <TableIcon />,
-    subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
-  },
-  {
-    name: "Pages",
-    icon: <PageIcon />,
     subItems: [
-      { name: "Blank Page", path: "/blank", pro: false },
-      { name: "404 Error", path: "/error-404", pro: false },
+      { name: "Add Student", path: "/add-student", pro: false },
+      { name: "Student Approval", path: "/approval-student", pro: false },
+      { name: "Add Teacher", path: "/add-teacher", pro: false },
+      { name: "Add Client", path: "/add-client", pro: false },
     ],
   },
+    {
+    name: "Settings",
+    icon: <SettingsIcon className="w-6 h-6" />,
+    subItems: [
+    { name: "College", path: "/college" },
+    { name: "Department", path: "/department" },
+    { name: "Japanese Level", path: "/japanese-level" },
+    { name: "Tags", path: "/tags" },
+    { name: "Classification", path: "/classification" },
+    { name: "Status", path: "/status" },
+  ],
+  },
+
+  // {
+  //   name: "Pages",
+  //   icon: <PageIcon />,
+  //   subItems: [
+  //     { name: "Blank Page", path: "/blank", pro: false },
+  //     { name: "404 Error", path: "/error-404", pro: false },
+  //   ],
+  // },
 ];
 
 const othersItems: NavItem[] = [
@@ -97,6 +116,45 @@ const othersItems: NavItem[] = [
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
+  const { t } = useLanguage();
+
+  const localizeNavText = useCallback(
+    (name: string) => {
+      switch (name) {
+        case "Dashboard":
+          return t("sidebar.dashboard");
+        case "Student List":
+          return t("sidebar.studentList");
+        case "Management":
+          return t("sidebar.management");
+        case "Add Student":
+          return t("sidebar.addStudent");
+        case "Student Approval":
+          return t("sidebar.studentApproval");
+        case "Add Teacher":
+          return t("sidebar.addTeacher");
+        case "Add Client":
+          return t("sidebar.addClient");
+        case "Settings":
+          return t("sidebar.settings");
+        case "College":
+          return t("sidebar.college");
+        case "Department":
+          return t("sidebar.department");
+        case "Japanese Level":
+          return t("sidebar.japaneseLevel");
+        case "Tags":
+          return t("sidebar.tags");
+        case "Classification":
+          return t("sidebar.classification");
+        case "Status":
+          return t("sidebar.status");
+        default:
+          return name;
+      }
+    },
+    [t]
+  );
 
   const renderMenuItems = (
     navItems: NavItem[],
@@ -128,7 +186,7 @@ const AppSidebar: React.FC = () => {
                 {nav.icon}
               </span>
               {(isExpanded || isHovered || isMobileOpen) && (
-                <span className={`menu-item-text`}>{nav.name}</span>
+                <span className={`menu-item-text`}>{localizeNavText(nav.name)}</span>
               )}
               {(isExpanded || isHovered || isMobileOpen) && (
                 <ChevronDownIcon
@@ -159,7 +217,7 @@ const AppSidebar: React.FC = () => {
                   {nav.icon}
                 </span>
                 {(isExpanded || isHovered || isMobileOpen) && (
-                  <span className={`menu-item-text`}>{nav.name}</span>
+                  <span className={`menu-item-text`}>{localizeNavText(nav.name)}</span>
                 )}
               </Link>
             )
@@ -188,7 +246,7 @@ const AppSidebar: React.FC = () => {
                           : "menu-dropdown-item-inactive"
                       }`}
                     >
-                      {subItem.name}
+                      {localizeNavText(subItem.name)}
                       <span className="flex items-center gap-1 ml-auto">
                         {subItem.new && (
                           <span
@@ -310,22 +368,17 @@ const AppSidebar: React.FC = () => {
       >
         <Link href="/">
           {isExpanded || isHovered || isMobileOpen ? (
-            <>
+            <div className="inline-flex items-center gap-2">
               <Image
-                className="dark:hidden"
-                src="/images/logo/logo.svg"
+                src="/images/logo/logo-icon.svg"
                 alt="Logo"
-                width={150}
-                height={40}
+                width={30}
+                height={30}
               />
-              <Image
-                className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-            </>
+              <span className="text-lg font-semibold tracking-wide text-gray-800 dark:text-white">
+                {t("brand.sms")}
+              </span>
+            </div>
           ) : (
             <Image
               src="/images/logo/logo-icon.svg"
@@ -348,7 +401,7 @@ const AppSidebar: React.FC = () => {
                 }`}
               >
                 {isExpanded || isHovered || isMobileOpen ? (
-                  "Menu"
+                  t("common.menu")
                 ) : (
                   <HorizontaLDots />
                 )}
@@ -356,7 +409,7 @@ const AppSidebar: React.FC = () => {
               {renderMenuItems(navItems, "main")}
             </div>
 
-            <div className="">
+            {/* <div className="">
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
                   !isExpanded && !isHovered
@@ -371,10 +424,10 @@ const AppSidebar: React.FC = () => {
                 )}
               </h2>
               {renderMenuItems(othersItems, "others")}
-            </div>
+            </div> */}
           </div>
         </nav>
-        {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null}
+        {/* {isExpanded || isHovered || isMobileOpen ? <SidebarWidget /> : null} */}
       </div>
     </aside>
   );
