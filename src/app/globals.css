@@ -491,6 +491,22 @@ span.flatpickr-weekday,
   @apply right-0;
 }
 
+.flatpickr-calendar.dob-compact-picker {
+  @apply !p-3;
+  transform: scale(0.92);
+  transform-origin: top left;
+}
+
+.flatpickr-calendar.dob-compact-picker .flatpickr-current-month .cur-month,
+.flatpickr-calendar.dob-compact-picker .flatpickr-current-month input.cur-year {
+  @apply !text-base;
+}
+
+.flatpickr-calendar.dob-compact-picker .flatpickr-weekday,
+.flatpickr-calendar.dob-compact-picker .flatpickr-day {
+  @apply !text-xs;
+}
+
 .fc .fc-view-harness {
   @apply max-w-full overflow-x-auto custom-scrollbar;
 }
