@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { PencilIcon, TrashBinIcon } from "@/icons";
+import Pagination from "@/components/tables/Pagination";
 
 interface Status {
   id: string;
@@ -19,6 +21,8 @@ interface Props {
   onEdit: (row: Status) => void;
   onDelete: (row: Status) => void;
 }
+
+const ITEMS_PER_PAGE = 5;
 
 function getBadgeColors(value: string) {
   let hash = 0;
@@ -37,6 +41,17 @@ function getBadgeColors(value: string) {
 }
 
 export default function StatusTable({ data, onEdit, onDelete }: Props) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE));
+  const activePage = Math.min(currentPage, totalPages);
+  const startIndex = (activePage - 1) * ITEMS_PER_PAGE;
+  const paginatedData = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(Math.min(Math.max(page, 1), totalPages));
+  };
+
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
       <div className="max-w-full overflow-x-auto">
@@ -66,7 +81,7 @@ export default function StatusTable({ data, onEdit, onDelete }: Props) {
             </TableHeader>
 
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {data.length === 0 ? (
+              {paginatedData.length === 0 ? (
                 <TableRow>
                   <TableCell className="px-5 py-8 text-start text-theme-sm text-gray-500 dark:text-gray-400">
                     No statuses added yet.
@@ -79,7 +94,7 @@ export default function StatusTable({ data, onEdit, onDelete }: Props) {
                   </TableCell>
                 </TableRow>
               ) : (
-                data.map((row) => (
+                paginatedData.map((row) => (
                   <TableRow key={row.id}>
                     <TableCell className="px-5 py-4 sm:px-6 text-start">
                       <span className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
@@ -123,6 +138,16 @@ export default function StatusTable({ data, onEdit, onDelete }: Props) {
           </Table>
         </div>
       </div>
+
+      {data.length > 0 && (
+        <div className="flex justify-end border-t border-gray-100 px-5 py-4 dark:border-white/[0.05]">
+          <Pagination
+            currentPage={activePage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </div>
   );
 }

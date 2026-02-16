@@ -11,20 +11,22 @@ import {
 import { PencilIcon, TrashBinIcon } from "@/icons";
 import Pagination from "@/components/tables/Pagination";
 
-interface JapaneseLevel {
+interface Client {
   id: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  email: string;
 }
 
 interface Props {
-  data: JapaneseLevel[];
-  onEdit: (row: JapaneseLevel) => void;
-  onDelete: (row: JapaneseLevel) => void;
+  data: Client[];
+  onEdit: (row: Client) => void;
+  onDelete: (row: Client) => void;
 }
 
 const ITEMS_PER_PAGE = 5;
 
-export default function JapaneseLevelTable({ data, onEdit, onDelete }: Props) {
+export default function ClientTable({ data, onEdit, onDelete }: Props) {
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE));
@@ -39,7 +41,7 @@ export default function JapaneseLevelTable({ data, onEdit, onDelete }: Props) {
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
       <div className="max-w-full overflow-x-auto">
-        <div className="min-w-[640px]">
+        <div className="min-w-[920px]">
           <Table>
             <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
               <TableRow>
@@ -47,7 +49,19 @@ export default function JapaneseLevelTable({ data, onEdit, onDelete }: Props) {
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Japanese Level
+                  First Name
+                </TableCell>
+                <TableCell
+                  isHeader
+                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                >
+                  Last Name
+                </TableCell>
+                <TableCell
+                  isHeader
+                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                >
+                  Email
                 </TableCell>
                 <TableCell
                   isHeader
@@ -62,19 +76,29 @@ export default function JapaneseLevelTable({ data, onEdit, onDelete }: Props) {
               {paginatedData.length === 0 ? (
                 <TableRow>
                   <TableCell className="px-5 py-8 text-start text-theme-sm text-gray-500 dark:text-gray-400">
-                    No Japanese levels added yet.
+                    No clients added yet.
                   </TableCell>
-                  <TableCell className="px-4 py-8 text-end text-theme-sm text-gray-400 dark:text-gray-500">
-                    Add your first Japanese level from the button above.
+                  <TableCell className="px-4 py-8 text-theme-sm text-gray-400 dark:text-gray-500">
+                    Add your first client from the button above.
                   </TableCell>
+                  <TableCell className="px-4 py-8" />
+                  <TableCell className="px-4 py-8" />
                 </TableRow>
               ) : (
                 paginatedData.map((row) => (
                   <TableRow key={row.id}>
                     <TableCell className="px-5 py-4 sm:px-6 text-start">
                       <span className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
-                        {row.name}
+                        {row.firstName}
                       </span>
+                    </TableCell>
+
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {row.lastName}
+                    </TableCell>
+
+                    <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                      {row.email}
                     </TableCell>
 
                     <TableCell className="px-4 py-3 text-end">
@@ -83,7 +107,7 @@ export default function JapaneseLevelTable({ data, onEdit, onDelete }: Props) {
                           type="button"
                           onClick={() => onEdit(row)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-100 hover:text-brand-600 dark:text-gray-400 dark:hover:bg-white/[0.05] dark:hover:text-brand-400"
-                          aria-label={`Edit ${row.name}`}
+                          aria-label={`Edit ${row.firstName} ${row.lastName}`}
                         >
                           <PencilIcon />
                         </button>
@@ -91,7 +115,7 @@ export default function JapaneseLevelTable({ data, onEdit, onDelete }: Props) {
                           type="button"
                           onClick={() => onDelete(row)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-red-50 hover:text-red-600 dark:text-gray-400 dark:hover:bg-red-500/10 dark:hover:text-red-400"
-                          aria-label={`Delete ${row.name}`}
+                          aria-label={`Delete ${row.firstName} ${row.lastName}`}
                         >
                           <TrashBinIcon />
                         </button>

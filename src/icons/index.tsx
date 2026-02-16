@@ -52,6 +52,10 @@ import ChatIcon from "./chat.svg";
 import MoreDotIcon from "./more-dot.svg";
 import BellIcon from "./bell.svg";
 import SettingsIcon from "./settings.svg";
+import ZoomInIcon from "./zoom-in.svg";
+import ZoomOutIcon from "./zoom-out.svg";
+import MaleSvgIcon from "./male-svg.svg";
+import FemaleSvgIcon from "./female-svg.svg";
 export {
   DownloadIcon,
   BellIcon,
@@ -107,4 +111,8 @@ export {
   ChevronUpIcon,
   ChatIcon,
   SettingsIcon,
+  ZoomInIcon,
+  ZoomOutIcon,
+  MaleSvgIcon,
+  FemaleSvgIcon,
 };

@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import {
   Table,
   TableBody,
@@ -8,6 +9,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { PencilIcon, TrashBinIcon } from "@/icons";
+import Pagination from "@/components/tables/Pagination";
 
 interface College {
   id: string;
@@ -21,11 +23,24 @@ interface Props {
   onDelete: (row: College) => void;
 }
 
+const ITEMS_PER_PAGE = 5;
+
 export default function CollegeTable({
   data,
   onEdit,
   onDelete,
 }: Props) {
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const totalPages = Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE));
+  const activePage = Math.min(currentPage, totalPages);
+  const startIndex = (activePage - 1) * ITEMS_PER_PAGE;
+  const paginatedData = data.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(Math.min(Math.max(page, 1), totalPages));
+  };
+
   return (
     <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
       <div className="max-w-full overflow-x-auto">
@@ -59,7 +74,7 @@ export default function CollegeTable({
 
             {/* Body */}
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
-              {data.length === 0 ? (
+              {paginatedData.length === 0 ? (
                 <TableRow>
                   <TableCell className="px-5 py-8 text-start text-theme-sm text-gray-500 dark:text-gray-400">
                     No colleges added yet.
@@ -70,7 +85,7 @@ export default function CollegeTable({
                   {/* <TableCell className="px-4 py-8" /> */}
                 </TableRow>
               ) : (
-                data.map((college) => (
+                paginatedData.map((college) => (
                   <TableRow key={college.id}>
                     {/* Name */}
                     <TableCell className="px-5 py-4 sm:px-6 text-start">
@@ -113,6 +128,16 @@ export default function CollegeTable({
           </Table>
         </div>
       </div>
+
+      {data.length > 0 && (
+        <div className="flex justify-end border-t border-gray-100 px-5 py-4 dark:border-white/[0.05]">
+          <Pagination
+            currentPage={activePage}
+            totalPages={totalPages}
+            onPageChange={handlePageChange}
+          />
+        </div>
+      )}
     </div>
   );
 }
