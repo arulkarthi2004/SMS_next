@@ -135,6 +135,52 @@
     "selfIntro": "Self Introduction",
     "edit": "Edit student",
     "delete": "Delete student",
-    "zoomOut": "Zoom out"
+    "zoomOut": "Zoom out",
+    "zoomIn": "Zoom in",
+    "facebook": "Facebook",
+    "linkedIn": "LinkedIn",
+    "instagram": "Instagram",
+    "x": "X"
+  },
+  "studentApproval": {
+    "pageTitle": "Student Approval",
+    "title": "Student Approval Queue",
+    "desc": "Review student submissions and update approval decisions.",
+    "cards": {
+      "totalStudents": "Total Students",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "searchLabel": "Search by ID or Name",
+    "searchPlaceholder": "Search students",
+    "approvalStatus": "Approval Status",
+    "all": "All",
+    "classification": "Classification",
+    "status": "Status",
+    "tags": "Tags",
+    "selectTags": "Select tags",
+    "done": "Done",
+    "noStudents": "No students found. Try changing search or filter.",
+    "approve": "Approve",
+    "reject": "Reject",
+    "email": "Email",
+    "statuses": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "addTeacher": {
+    "pageTitle": "Add Teacher",
+    "title": "Teacher Management",
+    "desc": "Create and manage teacher records.",
+    "add": "Add Teacher"
+  },
+  "addClient": {
+    "pageTitle": "Add Client",
+    "title": "Client Management",
+    "desc": "Create and manage client records.",
+    "add": "Add Client"
   }
 }

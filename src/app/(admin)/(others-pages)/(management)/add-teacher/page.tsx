@@ -8,6 +8,7 @@ import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
 import TeacherTable from "@/components/management/teacher/TeacherTable";
 import TeacherModal from "@/components/management/teacher/TeacherModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Teacher {
   id: string;
@@ -17,6 +18,7 @@ interface Teacher {
 }
 
 export default function AddTeacherPage() {
+  const { t } = useLanguage();
   const [teachers, setTeachers] = useState<Teacher[]>([]);
   const [editing, setEditing] = useState<Teacher | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -53,15 +55,12 @@ export default function AddTeacherPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Add Teacher" />
+      <PageBreadcrumb pageTitle={t("addTeacher.pageTitle")} />
 
-      <ComponentCard
-        title="Teacher Management"
-        desc="Create and manage teacher records."
-      >
+      <ComponentCard title={t("addTeacher.title")} desc={t("addTeacher.desc")}>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
-            Add Teacher
+            {t("addTeacher.add")}
           </Button>
         </div>
 

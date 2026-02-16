@@ -8,6 +8,7 @@ import StudentApprovalTable, {
   ApprovalStatus,
   StudentRow,
 } from "@/components/management/student-approval/StudentApprovalTable";
+import { useLanguage } from "@/context/LanguageContext";
 
 const initialStudents: StudentRow[] = [
   {
@@ -92,6 +93,7 @@ const tagOptions = [
 ];
 
 export default function ApprovalStudentPage() {
+  const { t } = useLanguage();
   const [students, setStudents] = useState<StudentRow[]>(initialStudents);
 
   const counts = useMemo(() => {
@@ -145,34 +147,42 @@ export default function ApprovalStudentPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Student Approval" />
+      <PageBreadcrumb pageTitle={t("studentApproval.pageTitle")} />
 
       <ComponentCard
-        title="Student Approval Queue"
-        desc="Review student submissions and update approval decisions."
+        title={t("studentApproval.title")}
+        desc={t("studentApproval.desc")}
       >
         <div className="mb-5 grid grid-cols-1 gap-3 md:grid-cols-4">
           <div className="rounded-lg border border-gray-200 p-3 dark:border-white/[0.05]">
-            <p className="text-theme-xs text-gray-500 dark:text-gray-400">Total Students</p>
+            <p className="text-theme-xs text-gray-500 dark:text-gray-400">
+              {t("studentApproval.cards.totalStudents")}
+            </p>
             <p className="mt-1 text-lg font-semibold text-gray-800 dark:text-white/90">{counts.total}</p>
           </div>
 
           <div className="rounded-lg border border-gray-200 p-3 dark:border-white/[0.05]">
-            <p className="text-theme-xs text-gray-500 dark:text-gray-400">Pending</p>
+            <p className="text-theme-xs text-gray-500 dark:text-gray-400">
+              {t("studentApproval.cards.pending")}
+            </p>
             <div className="mt-1">
               <Badge size="sm" color="warning">{counts.pending}</Badge>
             </div>
           </div>
 
           <div className="rounded-lg border border-gray-200 p-3 dark:border-white/[0.05]">
-            <p className="text-theme-xs text-gray-500 dark:text-gray-400">Approved</p>
+            <p className="text-theme-xs text-gray-500 dark:text-gray-400">
+              {t("studentApproval.cards.approved")}
+            </p>
             <div className="mt-1">
               <Badge size="sm" color="success">{counts.approved}</Badge>
             </div>
           </div>
 
           <div className="rounded-lg border border-gray-200 p-3 dark:border-white/[0.05]">
-            <p className="text-theme-xs text-gray-500 dark:text-gray-400">Rejected</p>
+            <p className="text-theme-xs text-gray-500 dark:text-gray-400">
+              {t("studentApproval.cards.rejected")}
+            </p>
             <div className="mt-1">
               <Badge size="sm" color="error">{counts.rejected}</Badge>
             </div>
