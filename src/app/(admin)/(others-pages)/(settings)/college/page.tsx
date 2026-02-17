@@ -8,6 +8,7 @@ import CollegeTable from "@/components/settings/college/CollegeTable";
 import CollegeModal from "@/components/settings/college/CollegeModal";
 import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface College {
   id: string;
@@ -16,6 +17,7 @@ interface College {
 }
 
 export default function CollegePage() {
+  const { t } = useLanguage();
   const [colleges, setColleges] = useState<College[]>([]);
   const [editing, setEditing] = useState<College | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -54,15 +56,12 @@ export default function CollegePage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="College Settings" />
+      <PageBreadcrumb pageTitle={t("settings.college.pageTitle")} />
 
-      <ComponentCard
-        title="College Master"
-        desc="Create and manage colleges available in master settings."
-      >
+      <ComponentCard>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAddCollege} startIcon={<PlusIcon />}>
-            Add College
+            {t("settings.college.add")}
           </Button>
         </div>
 

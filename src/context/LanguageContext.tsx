@@ -48,14 +48,16 @@ const getValueByPath = (obj: Dictionary, path: string): string | undefined => {
 };
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [language, setLanguageState] = useState<Language>(() => {
-    if (typeof window === "undefined") {
-      return "en";
-    }
+  const [language, setLanguageState] = useState<Language>("en");
 
+  useEffect(() => {
     const stored = window.localStorage.getItem(STORAGE_KEY);
-    return stored === "en" || stored === "ja" ? stored : "en";
-  });
+    if (stored === "en" || stored === "ja") {
+      window.setTimeout(() => {
+        setLanguageState(stored);
+      }, 0);
+    }
+  }, []);
 
   useEffect(() => {
     document.documentElement.lang = language;

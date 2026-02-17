@@ -5,6 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TeacherFormData {
   firstName: string;
@@ -33,6 +34,7 @@ export default function TeacherModal({
   onSave,
   initialData,
 }: Props) {
+  const { t } = useLanguage();
   const [form, setForm] = useState<TeacherFormData>(
     initialData ?? {
       firstName: "",
@@ -61,15 +63,15 @@ export default function TeacherModal({
     const nextErrors: TeacherFormErrors = {};
 
     if (!trimmedForm.firstName) {
-      nextErrors.firstName = "First name is required.";
+      nextErrors.firstName = t("addTeacher.errors.firstNameRequired");
     }
     if (!trimmedForm.lastName) {
-      nextErrors.lastName = "Last name is required.";
+      nextErrors.lastName = t("addTeacher.errors.lastNameRequired");
     }
     if (!trimmedForm.email) {
-      nextErrors.email = "Email is required.";
+      nextErrors.email = t("addTeacher.errors.emailRequired");
     } else if (!emailRegex.test(trimmedForm.email)) {
-      nextErrors.email = "Enter a valid email address.";
+      nextErrors.email = t("addTeacher.errors.emailInvalid");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -88,43 +90,43 @@ export default function TeacherModal({
       className="m-4 max-w-[620px] p-6 sm:p-7"
     >
       <h3 className="mb-6 text-lg font-semibold text-gray-800 dark:text-white/90">
-        {initialData ? "Edit Teacher" : "Add Teacher"}
+        {initialData ? t("addTeacher.editTitle") : t("addTeacher.addTitle")}
       </h3>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <Label htmlFor="teacher-first-name">First Name</Label>
+          <Label htmlFor="teacher-first-name">{t("profile.firstName")}</Label>
           <Input
             id="teacher-first-name"
             name="firstName"
             value={form.firstName}
             onChange={handleChange}
-            placeholder="Enter first name"
+            placeholder={t("addTeacher.placeholders.firstName")}
             error={Boolean(errors.firstName)}
             hint={errors.firstName}
           />
         </div>
         <div>
-          <Label htmlFor="teacher-last-name">Last Name</Label>
+          <Label htmlFor="teacher-last-name">{t("profile.lastName")}</Label>
           <Input
             id="teacher-last-name"
             name="lastName"
             value={form.lastName}
             onChange={handleChange}
-            placeholder="Enter last name"
+            placeholder={t("addTeacher.placeholders.lastName")}
             error={Boolean(errors.lastName)}
             hint={errors.lastName}
           />
         </div>
         <div className="sm:col-span-2">
-          <Label htmlFor="teacher-email">Email</Label>
+          <Label htmlFor="teacher-email">{t("profile.email")}</Label>
           <Input
             id="teacher-email"
             name="email"
             type="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="Enter email"
+            placeholder={t("addTeacher.placeholders.email")}
             error={Boolean(errors.email)}
             hint={errors.email}
           />
@@ -133,10 +135,10 @@ export default function TeacherModal({
 
       <div className="mt-8 flex items-center justify-end gap-3">
         <Button size="sm" variant="outline" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
         <Button size="sm" onClick={handleSave}>
-          Save
+          {t("common.save")}
         </Button>
       </div>
     </Modal>

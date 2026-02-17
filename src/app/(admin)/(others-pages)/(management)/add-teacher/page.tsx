@@ -57,7 +57,7 @@ export default function AddTeacherPage() {
     <>
       <PageBreadcrumb pageTitle={t("addTeacher.pageTitle")} />
 
-      <ComponentCard title={t("addTeacher.title")} desc={t("addTeacher.desc")}>
+      <ComponentCard>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
             {t("addTeacher.add")}

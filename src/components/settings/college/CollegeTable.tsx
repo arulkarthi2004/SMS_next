@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 import { PencilIcon, TrashBinIcon } from "@/icons";
 import Pagination from "@/components/tables/Pagination";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface College {
   id: string;
@@ -30,6 +31,7 @@ export default function CollegeTable({
   onEdit,
   onDelete,
 }: Props) {
+  const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE));
@@ -53,21 +55,21 @@ export default function CollegeTable({
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  College Name
+                  {t("settings.common.collegeName")}
                 </TableCell>
 
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Location
+                  {t("settings.common.location")}
                 </TableCell>
 
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400"
                 >
-                  Actions
+                  {t("settings.common.actions")}
                 </TableCell>
               </TableRow>
             </TableHeader>
@@ -77,10 +79,10 @@ export default function CollegeTable({
               {paginatedData.length === 0 ? (
                 <TableRow>
                   <TableCell className="px-5 py-8 text-start text-theme-sm text-gray-500 dark:text-gray-400">
-                    No colleges added yet.
+                    {t("settings.college.emptyTitle")}
                   </TableCell>
                   <TableCell className="px-4 py-8 text-theme-sm text-gray-400 dark:text-gray-500">
-                    Add your first college from the button above.
+                    {t("settings.college.emptyDesc")}
                   </TableCell>
                   {/* <TableCell className="px-4 py-8" /> */}
                 </TableRow>
@@ -106,7 +108,7 @@ export default function CollegeTable({
                           type="button"
                           onClick={() => onEdit(college)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-100 hover:text-brand-600 dark:text-gray-400 dark:hover:bg-white/[0.05] dark:hover:text-brand-400"
-                          aria-label={`Edit ${college.name}`}
+                          aria-label={`${t("common.edit")} ${college.name}`}
                         >
                           <PencilIcon />
                         </button>
@@ -115,7 +117,7 @@ export default function CollegeTable({
                           type="button"
                           onClick={() => onDelete(college)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-red-50 hover:text-red-600 dark:text-gray-400 dark:hover:bg-red-500/10 dark:hover:text-red-400"
-                          aria-label={`Delete ${college.name}`}
+                          aria-label={`${t("common.delete")} ${college.name}`}
                         >
                           <TrashBinIcon />
                         </button>

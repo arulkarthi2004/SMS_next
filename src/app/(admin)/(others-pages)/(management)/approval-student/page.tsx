@@ -149,10 +149,7 @@ export default function ApprovalStudentPage() {
     <>
       <PageBreadcrumb pageTitle={t("studentApproval.pageTitle")} />
 
-      <ComponentCard
-        title={t("studentApproval.title")}
-        desc={t("studentApproval.desc")}
-      >
+      <ComponentCard>
         <div className="mb-5 grid grid-cols-1 gap-3 md:grid-cols-4">
           <div className="rounded-lg border border-gray-200 p-3 dark:border-white/[0.05]">
             <p className="text-theme-xs text-gray-500 dark:text-gray-400">

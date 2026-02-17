@@ -5,6 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface JapaneseLevelFormData {
   name: string;
@@ -27,6 +28,7 @@ export default function JapaneseLevelModal({
   onSave,
   initialData,
 }: Props) {
+  const { t } = useLanguage();
   const [form, setForm] = useState<JapaneseLevelFormData>(
     initialData ?? {
       name: "",
@@ -48,7 +50,7 @@ export default function JapaneseLevelModal({
     const nextErrors: JapaneseLevelFormErrors = {};
 
     if (!trimmedForm.name) {
-      nextErrors.name = "Japanese level is required.";
+      nextErrors.name = t("settings.japaneseLevel.errors.nameRequired");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -67,18 +69,20 @@ export default function JapaneseLevelModal({
       className="m-4 max-w-[560px] p-6 sm:p-7"
     >
       <h3 className="mb-6 text-lg font-semibold text-gray-800 dark:text-white/90">
-        {initialData ? "Edit Japanese Level" : "Add Japanese Level"}
+        {initialData
+          ? t("settings.japaneseLevel.editTitle")
+          : t("settings.japaneseLevel.addTitle")}
       </h3>
 
       <div className="space-y-5">
         <div>
-          <Label htmlFor="japanese-level-name">Japanese Level</Label>
+          <Label htmlFor="japanese-level-name">{t("settings.common.japaneseLevel")}</Label>
           <Input
             id="japanese-level-name"
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Enter Japanese level"
+            placeholder={t("settings.japaneseLevel.placeholders.name")}
             error={Boolean(errors.name)}
             hint={errors.name}
           />
@@ -87,10 +91,10 @@ export default function JapaneseLevelModal({
 
       <div className="mt-8 flex items-center justify-end gap-3">
         <Button size="sm" variant="outline" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
         <Button size="sm" onClick={handleSave}>
-          Save
+          {t("common.save")}
         </Button>
       </div>
     </Modal>

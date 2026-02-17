@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Department {
   name: string;
@@ -16,6 +17,7 @@ export default function DepartmentDistributionList({
   departments,
   rowsPerPage = 4,
 }: Props) {
+  const { t } = useLanguage();
 
   // Safe rows fallback
   const safeRows = rowsPerPage || 4;
@@ -43,7 +45,7 @@ export default function DepartmentDistributionList({
       {/* Header */}
       <div className="px-6 py-2 border-b border-gray-200 dark:border-gray-800">
         <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
-          Department
+          {t("dashboard.department")}
         </h3>
       </div>
 
@@ -76,7 +78,7 @@ export default function DepartmentDistributionList({
 
           {/* Page Info */}
           <p className="text-sm text-gray-500">
-            Page {page} of {totalPages}
+            {t("dashboard.page")} {page} {t("dashboard.of")} {totalPages}
           </p>
 
           {/* Controls */}
@@ -88,7 +90,7 @@ export default function DepartmentDistributionList({
               onClick={() => setPage((p) => Math.max(1, p - 1))}
               className="px-3 py-1 border rounded-lg text-sm disabled:opacity-50"
             >
-              Prev
+              {t("dashboard.prev")}
             </button>
 
             {/* Page Numbers */}
@@ -116,7 +118,7 @@ export default function DepartmentDistributionList({
               onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
               className="px-3 py-1 border rounded-lg text-sm disabled:opacity-50"
             >
-              Next
+              {t("dashboard.next")}
             </button>
 
           </div>

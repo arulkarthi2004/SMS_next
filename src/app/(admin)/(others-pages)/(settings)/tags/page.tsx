@@ -8,6 +8,7 @@ import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
 import TagsTable from "@/components/settings/tags/TagsTable";
 import TagsModal from "@/components/settings/tags/TagsModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Tag {
   id: string;
@@ -15,6 +16,7 @@ interface Tag {
 }
 
 export default function TagsPage() {
+  const { t } = useLanguage();
   const [tags, setTags] = useState<Tag[]>([]);
   const [editing, setEditing] = useState<Tag | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -51,15 +53,12 @@ export default function TagsPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Tags Settings" />
+      <PageBreadcrumb pageTitle={t("settings.tags.pageTitle")} />
 
-      <ComponentCard
-        title="Tags Master"
-        desc="Create and manage tags available in master settings."
-      >
+      <ComponentCard>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
-            Add Tag
+            {t("settings.tags.add")}
           </Button>
         </div>
 

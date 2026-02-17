@@ -6,6 +6,7 @@ import Button from "../ui/button/Button";
 import Input from "../form/input/InputField";
 import Label from "../form/Label";
 import Image from "next/image";
+import { useLanguage } from "@/context/LanguageContext";
 
 
 interface UserMetaCardProps {
@@ -19,6 +20,7 @@ interface UserMetaCardProps {
 }
 
 export default function UserMetaCard({ user, onSave }: UserMetaCardProps) {
+  const { t } = useLanguage();
   const { isOpen, openModal, closeModal } = useModal();
   const [formData, setFormData] = React.useState<UserMetaCardProps["user"]>({
     firstName: "",
@@ -165,7 +167,7 @@ export default function UserMetaCard({ user, onSave }: UserMetaCardProps) {
                 fill=""
               />
             </svg>
-            Edit
+            {t("common.edit")}
           </button>
         </div>
       </div>
@@ -173,10 +175,10 @@ export default function UserMetaCard({ user, onSave }: UserMetaCardProps) {
         <div className="no-scrollbar relative w-full max-w-[700px] overflow-y-auto rounded-3xl bg-white p-4 dark:bg-gray-900 lg:p-11">
           <div className="px-2 pr-14">
             <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90">
-              Edit Personal Information
+              {t("profile.editTitle")}
             </h4>
             <p className="mb-6 text-sm text-gray-500 dark:text-gray-400 lg:mb-7">
-              Update your details to keep your profile up-to-date.
+              {t("profile.editDesc")}
             </p>
           </div>
           <form className="flex flex-col">
@@ -225,22 +227,22 @@ export default function UserMetaCard({ user, onSave }: UserMetaCardProps) {
               </div> */}
               <div className="mt-7">
                 <h5 className="mb-5 text-lg font-medium text-gray-800 dark:text-white/90 lg:mb-6">
-                  Personal Information
+                  {t("profile.personalInfo")}
                 </h5>
 
                 <div className="grid grid-cols-1 gap-x-6 gap-y-5 lg:grid-cols-2">
                   <div className="col-span-2 lg:col-span-1">
-                    <Label>First Name</Label>
+                    <Label>{t("profile.firstName")}</Label>
                     <Input type="text" name="firstName" value={formData.firstName} onChange={handleInputChange} />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
-                    <Label>Last Name</Label>
+                    <Label>{t("profile.lastName")}</Label>
                     <Input type="text" name="lastName" value={formData.lastName} onChange={handleInputChange} />
                   </div>
 
                   <div className="col-span-2 lg:col-span-1">
-                    <Label>Email Address</Label>
+                    <Label>{t("profile.email")}</Label>
                     <Input type="text" name="email" value={formData.email} onChange={handleInputChange} />
                   </div>
 
@@ -250,7 +252,7 @@ export default function UserMetaCard({ user, onSave }: UserMetaCardProps) {
                   </div> */}
 
                   <div className="col-span-2 lg:col-span-1">
-                    <Label>Bio</Label>
+                    <Label>{t("profile.bio")}</Label>
                     <Input type="text" name="bio" value={formData.bio} onChange={handleInputChange} />
                   </div>
                 </div>
@@ -258,10 +260,10 @@ export default function UserMetaCard({ user, onSave }: UserMetaCardProps) {
             </div>
             <div className="flex items-center gap-3 px-2 mt-6 lg:justify-end">
               <Button size="sm" variant="outline" onClick={closeModal} type="button">
-                Close
+                {t("common.close")}
               </Button>
               <Button size="sm" onClick={handleSave} type="button">
-                Save Changes
+                {t("common.saveChanges")}
               </Button>
             </div>
           </form>

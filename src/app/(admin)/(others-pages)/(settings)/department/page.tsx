@@ -8,6 +8,7 @@ import DepartmentTable from "@/components/settings/department/DepartmentTable";
 import DepartmentModal from "@/components/settings/department/DepartmentModal";
 import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Department {
   id: string;
@@ -15,6 +16,7 @@ interface Department {
 }
 
 export default function DepartmentPage() {
+  const { t } = useLanguage();
   const [departments, setDepartments] = useState<Department[]>([]);
   const [editing, setEditing] = useState<Department | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -51,19 +53,16 @@ export default function DepartmentPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Department Settings" />
+      <PageBreadcrumb pageTitle={t("settings.department.pageTitle")} />
 
-      <ComponentCard
-        title="Department Master"
-        desc="Create and manage departments available in master settings."
-      >
+      <ComponentCard>
         <div className="flex justify-end">
           <Button
             size="sm"
             onClick={handleAddDepartment}
             startIcon={<PlusIcon />}
           >
-            Add Department
+            {t("settings.department.add")}
           </Button>
         </div>
 

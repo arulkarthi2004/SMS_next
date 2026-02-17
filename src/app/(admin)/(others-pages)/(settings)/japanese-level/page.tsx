@@ -8,6 +8,7 @@ import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
 import JapaneseLevelTable from "@/components/settings/japanese-level/JapaneseLevelTable";
 import JapaneseLevelModal from "@/components/settings/japanese-level/JapaneseLevelModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface JapaneseLevel {
   id: string;
@@ -15,6 +16,7 @@ interface JapaneseLevel {
 }
 
 export default function JapaneseLevelPage() {
+  const { t } = useLanguage();
   const [levels, setLevels] = useState<JapaneseLevel[]>([]);
   const [editing, setEditing] = useState<JapaneseLevel | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -51,15 +53,12 @@ export default function JapaneseLevelPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Japanese Level Settings" />
+      <PageBreadcrumb pageTitle={t("settings.japaneseLevel.pageTitle")} />
 
-      <ComponentCard
-        title="Japanese Level Master"
-        desc="Create and manage Japanese levels available in master settings."
-      >
+      <ComponentCard>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
-            Add Japanese Level
+            {t("settings.japaneseLevel.add")}
           </Button>
         </div>
 

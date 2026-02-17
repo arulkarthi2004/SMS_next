@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -17,11 +18,12 @@ interface Props {
 }
 
 export default function CollegeVerticalBarChart({ data }: Props) {
+  const { t } = useLanguage();
 
   if (!data || data.length === 0) {
     return (
       <div className="rounded-2xl border p-5">
-        <p className="text-gray-500">No college data available</p>
+        <p className="text-gray-500">{t("dashboard.noCollegeData")}</p>
       </div>
     );
   }
@@ -59,7 +61,7 @@ export default function CollegeVerticalBarChart({ data }: Props) {
 
     yaxis: {
       title: {
-        text: "Students",
+        text: t("dashboard.students"),
       },
     },
 
@@ -76,14 +78,14 @@ export default function CollegeVerticalBarChart({ data }: Props) {
 
     tooltip: {
       y: {
-        formatter: (val: number) => `${val} students`,
+        formatter: (val: number) => `${val} ${t("dashboard.students").toLowerCase()}`,
       },
     },
   };
 
   const series = [
     {
-      name: "Students",
+      name: t("dashboard.students"),
       data: seriesData,
     },
   ];
@@ -92,7 +94,7 @@ export default function CollegeVerticalBarChart({ data }: Props) {
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03]">
 
       <h3 className="mb-4 text-lg font-semibold text-gray-800 dark:text-white/90">
-        Students by College
+        {t("dashboard.studentsByCollege")}
       </h3>
 
       <div className="overflow-x-auto">

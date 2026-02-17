@@ -5,6 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface TagFormData {
   name: string;
@@ -27,6 +28,7 @@ export default function TagsModal({
   onSave,
   initialData,
 }: Props) {
+  const { t } = useLanguage();
   const [form, setForm] = useState<TagFormData>(
     initialData ?? {
       name: "",
@@ -48,7 +50,7 @@ export default function TagsModal({
     const nextErrors: TagFormErrors = {};
 
     if (!trimmedForm.name) {
-      nextErrors.name = "Tag is required.";
+      nextErrors.name = t("settings.tags.errors.nameRequired");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -67,18 +69,18 @@ export default function TagsModal({
       className="m-4 max-w-[560px] p-6 sm:p-7"
     >
       <h3 className="mb-6 text-lg font-semibold text-gray-800 dark:text-white/90">
-        {initialData ? "Edit Tag" : "Add Tag"}
+        {initialData ? t("settings.tags.editTitle") : t("settings.tags.addTitle")}
       </h3>
 
       <div className="space-y-5">
         <div>
-          <Label htmlFor="tag-name">Tag Name</Label>
+          <Label htmlFor="tag-name">{t("settings.common.tagName")}</Label>
           <Input
             id="tag-name"
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Enter tag name"
+            placeholder={t("settings.tags.placeholders.name")}
             error={Boolean(errors.name)}
             hint={errors.name}
           />
@@ -87,10 +89,10 @@ export default function TagsModal({
 
       <div className="mt-8 flex items-center justify-end gap-3">
         <Button size="sm" variant="outline" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
         <Button size="sm" onClick={handleSave}>
-          Save
+          {t("common.save")}
         </Button>
       </div>
     </Modal>

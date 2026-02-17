@@ -57,7 +57,7 @@ export default function AddClientPage() {
     <>
       <PageBreadcrumb pageTitle={t("addClient.pageTitle")} />
 
-      <ComponentCard title={t("addClient.title")} desc={t("addClient.desc")}>
+      <ComponentCard>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
             {t("addClient.add")}

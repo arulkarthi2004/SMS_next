@@ -3,184 +3,365 @@
     "sms": "SMS"
   },
   "common": {
-    "home": "???",
-    "menu": "????",
-    "backToDashboard": "??????????",
-    "resetFilters": "??????????",
-    "close": "???"
+    "home": "ホーム",
+    "menu": "メニュー",
+    "backToDashboard": "ダッシュボードに戻る",
+    "resetFilters": "フィルターをリセット",
+    "close": "閉じる",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "saveChanges": "変更を保存",
+    "edit": "編集",
+    "delete": "削除"
   },
   "header": {
-    "searchPlaceholder": "????????????...",
-    "language": "??",
-    "english": "??",
-    "japanese": "???"
+    "searchPlaceholder": "検索またはコマンドを入力...",
+    "language": "言語",
+    "english": "英語",
+    "japanese": "日本語"
   },
   "sidebar": {
-    "dashboard": "???????",
-    "studentList": "????",
-    "management": "??",
-    "addStudent": "????",
-    "studentApproval": "????",
-    "addTeacher": "????",
-    "addClient": "????????",
-    "settings": "??",
-    "college": "??",
-    "department": "??",
-    "japaneseLevel": "??????",
-    "tags": "??",
-    "classification": "??",
-    "status": "?????"
+    "dashboard": "ダッシュボード",
+    "studentList": "学生一覧",
+    "management": "管理",
+    "addStudent": "学生追加",
+    "studentApproval": "学生承認",
+    "addTeacher": "教師追加",
+    "addClient": "クライアント追加",
+    "settings": "設定",
+    "college": "大学",
+    "department": "学科",
+    "japaneseLevel": "日本語レベル",
+    "tags": "タグ",
+    "classification": "分類",
+    "status": "ステータス"
   },
   "auth": {
-    "layoutTagline": "????????????????????????????????????",
+    "layoutTagline": "学生データ、権限、学務業務を効率的に管理するためのプラットフォーム。",
     "signin": {
-      "title": "?????",
-      "subtitle": "???????????????????????",
-      "email": "???",
-      "password": "?????",
+      "title": "ログイン",
+      "subtitle": "メールアドレスとパスワードを入力してログインしてください。",
+      "email": "メールアドレス",
+      "password": "パスワード",
       "emailPlaceholder": "info@gmail.com",
-      "passwordPlaceholder": "????????",
-      "keepLoggedIn": "?????????",
-      "forgotPassword": "?????????????",
-      "submit": "?????",
-      "noAccount": "????????????????",
-      "signUp": "??????"
+      "passwordPlaceholder": "パスワードを入力",
+      "keepLoggedIn": "ログイン状態を保持する",
+      "forgotPassword": "パスワードをお忘れですか？",
+      "submit": "ログイン",
+      "noAccount": "アカウントをお持ちでないですか？",
+      "signUp": "新規登録"
     },
     "signup": {
-      "title": "??????",
-      "subtitle": "??????????????",
-      "firstName": "?",
-      "lastName": "?",
-      "firstNamePlaceholder": "????",
-      "lastNamePlaceholder": "????",
-      "email": "???",
-      "password": "?????",
-      "emailPlaceholder": "??????????",
-      "passwordPlaceholder": "????????",
-      "submit": "??????",
-      "alreadyAccount": "????????????????",
-      "signIn": "?????"
+      "title": "新規登録",
+      "subtitle": "必要事項を入力して登録してください。",
+      "firstName": "名",
+      "lastName": "姓",
+      "firstNamePlaceholder": "名を入力",
+      "lastNamePlaceholder": "姓を入力",
+      "email": "メールアドレス",
+      "password": "パスワード",
+      "emailPlaceholder": "メールアドレスを入力",
+      "passwordPlaceholder": "パスワードを入力",
+      "submit": "登録",
+      "alreadyAccount": "すでにアカウントをお持ちですか？",
+      "signIn": "ログイン"
     }
   },
   "addStudent": {
-    "pageTitle": "????",
-    "cardTitle": "????",
-    "cardDesc": "* ????????",
-    "submitSuccess": "???????????????",
-    "saveStudent": "?????",
+    "pageTitle": "学生追加",
+    "cardTitle": "学生登録",
+    "cardDesc": "* 印の項目は必須です。",
+    "submitSuccess": "学生情報を保存しました。",
+    "saveStudent": "学生を保存",
     "fields": {
-      "studentPhoto": "????",
-      "name": "??",
-      "gender": "??",
-      "age": "??",
-      "college": "??",
-      "collegeUrl": "??URL",
-      "department": "??",
-      "graduationYear": "???",
-      "dob": "????",
-      "japaneseLevel": "??????",
-      "selfIntro": "????",
+      "studentPhoto": "学生写真",
+      "name": "氏名",
+      "gender": "性別",
+      "age": "年齢",
+      "college": "大学",
+      "collegeUrl": "大学URL",
+      "department": "学科",
+      "graduationYear": "卒業年度",
+      "dob": "生年月日",
+      "japaneseLevel": "日本語レベル",
+      "selfIntro": "自己紹介",
       "linkedInUrl": "LinkedIn URL",
       "gitUrl": "Git URL",
-      "portfolioUrl": "???????URL",
-      "email": "???ID",
-      "whatsapp": "WhatsApp??"
+      "portfolioUrl": "ポートフォリオURL",
+      "email": "メールアドレス",
+      "whatsapp": "WhatsApp番号"
     },
     "placeholders": {
-      "name": "??????",
-      "age": "?????",
+      "name": "氏名を入力",
+      "age": "年齢を入力",
       "collegeUrl": "https://college.example",
-      "graduationYear": "??????",
+      "graduationYear": "卒業年度を入力",
       "dob": "YYYY-MM-DD",
-      "selfIntro": "???????",
+      "selfIntro": "自己紹介を入力",
       "linkedInUrl": "https://linkedin.com/in/username",
       "gitUrl": "https://github.com/username",
       "portfolioUrl": "https://portfolio.example",
       "email": "student@example.com",
-      "whatsapp": "+1 555 555 5555"
+      "whatsapp": "+81 90 1234 5678"
     },
     "select": {
-      "gender": "?????",
-      "male": "??",
-      "female": "??",
-      "other": "???",
-      "college": "?????",
-      "department": "?????",
-      "japaneseLevel": "?????????"
+      "gender": "性別を選択",
+      "male": "男性",
+      "female": "女性",
+      "other": "その他",
+      "college": "大学を選択",
+      "department": "学科を選択",
+      "japaneseLevel": "日本語レベルを選択"
     },
     "errors": {
-      "photoRequired": "??????????",
-      "nameRequired": "?????????",
-      "genderRequired": "????????",
-      "collegeRequired": "????????",
-      "linkedInRequired": "LinkedIn URL??????",
-      "linkedInInvalid": "LinkedIn URL? http:// ??? https:// ????????????",
-      "emailRequired": "???ID??????",
-      "emailInvalid": "????????????????????"
+      "photoRequired": "学生写真は必須です。",
+      "nameRequired": "氏名は必須です。",
+      "genderRequired": "性別は必須です。",
+      "collegeRequired": "大学は必須です。",
+      "linkedInRequired": "LinkedIn URLは必須です。",
+      "linkedInInvalid": "LinkedIn URLは http:// または https:// で始めてください。",
+      "emailRequired": "メールアドレスは必須です。",
+      "emailInvalid": "有効なメールアドレスを入力してください。"
     }
   },
   "studentList": {
-    "pageTitle": "????",
-    "title": "?????????????",
-    "desc": "?????????????????????",
-    "searchPlaceholder": "?????",
-    "allColleges": "??????",
-    "allDepartments": "??????",
-    "allLevels": "???????",
-    "allStatus": "?????????",
-    "noResults": "???????????????",
-    "college": "??",
-    "graduationYear": "???",
-    "japaneseLevel": "?????? :",
-    "selfIntro": "????",
-    "edit": "??",
-    "delete": "??",
-    "zoomOut": "??",
-    "zoomIn": "??",
+    "pageTitle": "学生一覧",
+    "title": "学生カード",
+    "desc": "学生を絞り込み、詳細カードを表示します。",
+    "searchPlaceholder": "名前で検索",
+    "allColleges": "すべての大学",
+    "allDepartments": "すべての学科",
+    "allLevels": "すべてのレベル",
+    "allStatus": "すべてのステータス",
+    "noResults": "条件に一致する学生がいません。",
+    "college": "大学",
+    "graduationYear": "卒業年度",
+    "japaneseLevel": "日本語レベル :",
+    "selfIntro": "自己紹介",
+    "edit": "学生を編集",
+    "delete": "学生を削除",
+    "zoomOut": "縮小",
+    "zoomIn": "拡大",
     "facebook": "Facebook",
     "linkedIn": "LinkedIn",
     "instagram": "Instagram",
     "x": "X"
   },
   "studentApproval": {
-    "pageTitle": "????",
-    "title": "???????",
-    "desc": "???????????????????????",
+    "pageTitle": "学生承認",
+    "title": "学生承認キュー",
+    "desc": "学生申請を確認して承認ステータスを更新します。",
     "cards": {
-      "totalStudents": "????",
-      "pending": "??",
-      "approved": "??",
-      "rejected": "??"
+      "totalStudents": "学生数",
+      "pending": "保留",
+      "approved": "承認済み",
+      "rejected": "却下"
     },
-    "searchLabel": "ID???????",
-    "searchPlaceholder": "????????",
-    "approvalStatus": "????",
-    "all": "??",
-    "classification": "??",
-    "status": "?????",
-    "tags": "??",
-    "selectTags": "??????",
-    "done": "??",
-    "noStudents": "????????????????????????",
-    "approve": "??",
-    "reject": "??",
-    "email": "???",
+    "searchLabel": "ID または名前で検索",
+    "searchPlaceholder": "学生を検索",
+    "approvalStatus": "承認ステータス",
+    "all": "すべて",
+    "classification": "分類",
+    "status": "ステータス",
+    "tags": "タグ",
+    "selectTags": "タグを選択",
+    "done": "完了",
+    "noStudents": "学生が見つかりません。検索条件を変更してください。",
+    "approve": "承認",
+    "reject": "却下",
+    "email": "メール",
     "statuses": {
-      "pending": "??",
-      "approved": "??",
-      "rejected": "??"
+      "pending": "保留",
+      "approved": "承認済み",
+      "rejected": "却下"
     }
   },
   "addTeacher": {
-    "pageTitle": "????",
-    "title": "??????",
-    "desc": "????????????????",
-    "add": "????"
+    "pageTitle": "教師追加",
+    "title": "教師管理",
+    "desc": "教師データを作成・管理します。",
+    "add": "教師を追加",
+    "addTitle": "教師を追加",
+    "editTitle": "教師を編集",
+    "emptyTitle": "教師データがありません。",
+    "emptyDesc": "上のボタンから最初の教師を追加してください。",
+    "placeholders": {
+      "firstName": "名を入力",
+      "lastName": "姓を入力",
+      "email": "メールアドレスを入力"
+    },
+    "errors": {
+      "firstNameRequired": "名は必須です。",
+      "lastNameRequired": "姓は必須です。",
+      "emailRequired": "メールアドレスは必須です。",
+      "emailInvalid": "有効なメールアドレスを入力してください。"
+    }
   },
   "addClient": {
-    "pageTitle": "????????",
-    "title": "????????",
-    "desc": "????????????????",
-    "add": "????????"
+    "pageTitle": "クライアント追加",
+    "title": "クライアント管理",
+    "desc": "クライアントデータを作成・管理します。",
+    "add": "クライアントを追加",
+    "addTitle": "クライアントを追加",
+    "editTitle": "クライアントを編集",
+    "emptyTitle": "クライアントデータがありません。",
+    "emptyDesc": "上のボタンから最初のクライアントを追加してください。",
+    "placeholders": {
+      "firstName": "名を入力",
+      "lastName": "姓を入力",
+      "email": "メールアドレスを入力"
+    },
+    "errors": {
+      "firstNameRequired": "名は必須です。",
+      "lastNameRequired": "姓は必須です。",
+      "emailRequired": "メールアドレスは必須です。",
+      "emailInvalid": "有効なメールアドレスを入力してください。"
+    }
+  },
+  "settings": {
+    "common": {
+      "actions": "操作",
+      "location": "所在地",
+      "badge": "バッジ",
+      "collegeName": "大学名",
+      "departmentName": "学科名",
+      "japaneseLevel": "日本語レベル",
+      "tagName": "タグ名",
+      "classificationName": "分類名",
+      "statusName": "ステータス名"
+    },
+    "college": {
+      "pageTitle": "大学設定",
+      "add": "大学を追加",
+      "addTitle": "大学を追加",
+      "editTitle": "大学を編集",
+      "emptyTitle": "大学データがありません。",
+      "emptyDesc": "上のボタンから最初の大学を追加してください。",
+      "placeholders": {
+        "name": "大学名を入力",
+        "location": "所在地を入力"
+      },
+      "errors": {
+        "nameRequired": "大学名は必須です。",
+        "locationRequired": "所在地は必須です。"
+      }
+    },
+    "department": {
+      "pageTitle": "学科設定",
+      "add": "学科を追加",
+      "addTitle": "学科を追加",
+      "editTitle": "学科を編集",
+      "emptyTitle": "学科データがありません。",
+      "emptyDesc": "上のボタンから最初の学科を追加してください。",
+      "placeholders": {
+        "name": "学科名を入力"
+      },
+      "errors": {
+        "nameRequired": "学科名は必須です。"
+      }
+    },
+    "japaneseLevel": {
+      "pageTitle": "日本語レベル設定",
+      "add": "日本語レベルを追加",
+      "addTitle": "日本語レベルを追加",
+      "editTitle": "日本語レベルを編集",
+      "emptyTitle": "日本語レベルデータがありません。",
+      "emptyDesc": "上のボタンから最初の日本語レベルを追加してください。",
+      "placeholders": {
+        "name": "日本語レベルを入力"
+      },
+      "errors": {
+        "nameRequired": "日本語レベルは必須です。"
+      }
+    },
+    "tags": {
+      "pageTitle": "タグ設定",
+      "add": "タグを追加",
+      "addTitle": "タグを追加",
+      "editTitle": "タグを編集",
+      "emptyTitle": "タグデータがありません。",
+      "emptyDesc": "上のボタンから最初のタグを追加してください。",
+      "placeholders": {
+        "name": "タグ名を入力"
+      },
+      "errors": {
+        "nameRequired": "タグ名は必須です。"
+      }
+    },
+    "classification": {
+      "pageTitle": "分類設定",
+      "add": "分類を追加",
+      "addTitle": "分類を追加",
+      "editTitle": "分類を編集",
+      "emptyTitle": "分類データがありません。",
+      "emptyDesc": "上のボタンから最初の分類を追加してください。",
+      "placeholders": {
+        "name": "分類名を入力"
+      },
+      "errors": {
+        "nameRequired": "分類名は必須です。"
+      }
+    },
+    "status": {
+      "pageTitle": "ステータス設定",
+      "add": "ステータスを追加",
+      "addTitle": "ステータスを追加",
+      "editTitle": "ステータスを編集",
+      "emptyTitle": "ステータスデータがありません。",
+      "emptyBadgeHint": "バッジ色は自動で設定されます。",
+      "emptyDesc": "上のボタンから最初のステータスを追加してください。",
+      "placeholders": {
+        "name": "ステータス名を入力"
+      },
+      "errors": {
+        "nameRequired": "ステータス名は必須です。"
+      }
+    }
+  },
+  "profile": {
+    "pageTitle": "プロフィール",
+    "editTitle": "個人情報を編集",
+    "editDesc": "プロフィール情報を最新の状態に更新してください。",
+    "personalInfo": "個人情報",
+    "firstName": "名",
+    "lastName": "姓",
+    "email": "メールアドレス",
+    "bio": "自己紹介"
+  },
+  "dashboard": {
+    "totalStudents": "学生数",
+    "activeStudents": "在籍学生",
+    "department": "学科",
+    "page": "ページ",
+    "of": "/",
+    "prev": "前",
+    "next": "次",
+    "viewMore": "詳細表示",
+    "export": "エクスポート",
+    "genderDistribution": "性別分布",
+    "male": "男性",
+    "female": "女性",
+    "japaneseLevelDistribution": "日本語レベル分布",
+    "studentStatus": "学生ステータス",
+    "studentsByCollege": "大学別学生数",
+    "students": "学生",
+    "noCollegeData": "大学データがありません",
+    "total": "合計",
+    "status": {
+      "waiting": "待機",
+      "studying": "学習中",
+      "online": "オンライン",
+      "dropout": "退学",
+      "placed": "就職済"
+    },
+    "colleges": {
+      "tokyo": "東京大学",
+      "osaka": "大阪大学",
+      "kyoto": "京都大学",
+      "nagoya": "名古屋大学",
+      "hokkaido": "北海道大学",
+      "tohoku": "東北大学",
+      "chiba": "千葉大学"
+    }
   }
 }

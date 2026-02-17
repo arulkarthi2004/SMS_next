@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { MoreDotIcon } from "@/icons";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -22,6 +23,7 @@ export default function PieChartCard({
   labels,
   series,
 }: PieChartCardProps) {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const options: ApexOptions = {
@@ -59,10 +61,10 @@ export default function PieChartCard({
             className="w-40 p-2"
           >
             <DropdownItem onItemClick={() => setIsOpen(false)}>
-              View More
+              {t("dashboard.viewMore")}
             </DropdownItem>
             <DropdownItem onItemClick={() => setIsOpen(false)}>
-              Export
+              {t("dashboard.export")}
             </DropdownItem>
           </Dropdown>
         </div>

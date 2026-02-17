@@ -8,6 +8,7 @@ import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
 import ClassificationTable from "@/components/settings/classification/ClassificationTable";
 import ClassificationModal from "@/components/settings/classification/ClassificationModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Classification {
   id: string;
@@ -15,6 +16,7 @@ interface Classification {
 }
 
 export default function ClassificationPage() {
+  const { t } = useLanguage();
   const [classifications, setClassifications] = useState<Classification[]>([]);
   const [editing, setEditing] = useState<Classification | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -51,15 +53,12 @@ export default function ClassificationPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Classification Settings" />
+      <PageBreadcrumb pageTitle={t("settings.classification.pageTitle")} />
 
-      <ComponentCard
-        title="Classification Master"
-        desc="Create and manage classifications available in master settings."
-      >
+      <ComponentCard>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
-            Add Classification
+            {t("settings.classification.add")}
           </Button>
         </div>
 

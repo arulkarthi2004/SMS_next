@@ -5,6 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface StatusFormData {
   name: string;
@@ -27,6 +28,7 @@ export default function StatusModal({
   onSave,
   initialData,
 }: Props) {
+  const { t } = useLanguage();
   const [form, setForm] = useState<StatusFormData>(
     initialData ?? {
       name: "",
@@ -48,7 +50,7 @@ export default function StatusModal({
     const nextErrors: StatusFormErrors = {};
 
     if (!trimmedForm.name) {
-      nextErrors.name = "Status is required.";
+      nextErrors.name = t("settings.status.errors.nameRequired");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -67,18 +69,18 @@ export default function StatusModal({
       className="m-4 max-w-[560px] p-6 sm:p-7"
     >
       <h3 className="mb-6 text-lg font-semibold text-gray-800 dark:text-white/90">
-        {initialData ? "Edit Status" : "Add Status"}
+        {initialData ? t("settings.status.editTitle") : t("settings.status.addTitle")}
       </h3>
 
       <div className="space-y-5">
         <div>
-          <Label htmlFor="status-name">Status Name</Label>
+          <Label htmlFor="status-name">{t("settings.common.statusName")}</Label>
           <Input
             id="status-name"
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Enter status name"
+            placeholder={t("settings.status.placeholders.name")}
             error={Boolean(errors.name)}
             hint={errors.name}
           />
@@ -87,10 +89,10 @@ export default function StatusModal({
 
       <div className="mt-8 flex items-center justify-end gap-3">
         <Button size="sm" variant="outline" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
         <Button size="sm" onClick={handleSave}>
-          Save
+          {t("common.save")}
         </Button>
       </div>
     </Modal>

@@ -1,8 +1,11 @@
 "use client";
 import React from "react";
 import { BoxIconLine, GroupIcon } from "@/icons";
+import { useLanguage } from "@/context/LanguageContext";
 
 export const StudentCount = () => {
+  const { t } = useLanguage();
+
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
 
@@ -19,7 +22,7 @@ export const StudentCount = () => {
           {/* Text */}
           <div className="flex flex-col">
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              Total Students
+              {t("dashboard.totalStudents")}
             </span>
 
             <h4 className="font-bold text-gray-800 text-xl dark:text-white/90">
@@ -43,7 +46,7 @@ export const StudentCount = () => {
           {/* Text */}
           <div className="flex flex-col">
             <span className="text-sm text-gray-500 dark:text-gray-400">
-              Active Students
+              {t("dashboard.activeStudents")}
             </span>
 
             <h4 className="font-bold text-gray-800 text-xl dark:text-white/90">

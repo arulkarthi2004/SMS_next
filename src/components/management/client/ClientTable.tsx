@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 import { PencilIcon, TrashBinIcon } from "@/icons";
 import Pagination from "@/components/tables/Pagination";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Client {
   id: string;
@@ -27,6 +28,7 @@ interface Props {
 const ITEMS_PER_PAGE = 5;
 
 export default function ClientTable({ data, onEdit, onDelete }: Props) {
+  const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE));
@@ -49,25 +51,25 @@ export default function ClientTable({ data, onEdit, onDelete }: Props) {
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  First Name
+                  {t("profile.firstName")}
                 </TableCell>
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Last Name
+                  {t("profile.lastName")}
                 </TableCell>
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Email
+                  {t("profile.email")}
                 </TableCell>
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400"
                 >
-                  Actions
+                  {t("settings.common.actions")}
                 </TableCell>
               </TableRow>
             </TableHeader>
@@ -76,10 +78,10 @@ export default function ClientTable({ data, onEdit, onDelete }: Props) {
               {paginatedData.length === 0 ? (
                 <TableRow>
                   <TableCell className="px-5 py-8 text-start text-theme-sm text-gray-500 dark:text-gray-400">
-                    No clients added yet.
+                    {t("addClient.emptyTitle")}
                   </TableCell>
                   <TableCell className="px-4 py-8 text-theme-sm text-gray-400 dark:text-gray-500">
-                    Add your first client from the button above.
+                    {t("addClient.emptyDesc")}
                   </TableCell>
                   <TableCell className="px-4 py-8">{null}</TableCell>
                   <TableCell className="px-4 py-8">{null}</TableCell>
@@ -107,7 +109,7 @@ export default function ClientTable({ data, onEdit, onDelete }: Props) {
                           type="button"
                           onClick={() => onEdit(row)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-100 hover:text-brand-600 dark:text-gray-400 dark:hover:bg-white/[0.05] dark:hover:text-brand-400"
-                          aria-label={`Edit ${row.firstName} ${row.lastName}`}
+                          aria-label={`${t("common.edit")} ${row.firstName} ${row.lastName}`}
                         >
                           <PencilIcon />
                         </button>
@@ -115,7 +117,7 @@ export default function ClientTable({ data, onEdit, onDelete }: Props) {
                           type="button"
                           onClick={() => onDelete(row)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-red-50 hover:text-red-600 dark:text-gray-400 dark:hover:bg-red-500/10 dark:hover:text-red-400"
-                          aria-label={`Delete ${row.firstName} ${row.lastName}`}
+                          aria-label={`${t("common.delete")} ${row.firstName} ${row.lastName}`}
                         >
                           <TrashBinIcon />
                         </button>

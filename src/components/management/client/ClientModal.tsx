@@ -5,6 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ClientFormData {
   firstName: string;
@@ -33,6 +34,7 @@ export default function ClientModal({
   onSave,
   initialData,
 }: Props) {
+  const { t } = useLanguage();
   const [form, setForm] = useState<ClientFormData>(
     initialData ?? {
       firstName: "",
@@ -61,15 +63,15 @@ export default function ClientModal({
     const nextErrors: ClientFormErrors = {};
 
     if (!trimmedForm.firstName) {
-      nextErrors.firstName = "First name is required.";
+      nextErrors.firstName = t("addClient.errors.firstNameRequired");
     }
     if (!trimmedForm.lastName) {
-      nextErrors.lastName = "Last name is required.";
+      nextErrors.lastName = t("addClient.errors.lastNameRequired");
     }
     if (!trimmedForm.email) {
-      nextErrors.email = "Email is required.";
+      nextErrors.email = t("addClient.errors.emailRequired");
     } else if (!emailRegex.test(trimmedForm.email)) {
-      nextErrors.email = "Enter a valid email address.";
+      nextErrors.email = t("addClient.errors.emailInvalid");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -88,43 +90,43 @@ export default function ClientModal({
       className="m-4 max-w-[620px] p-6 sm:p-7"
     >
       <h3 className="mb-6 text-lg font-semibold text-gray-800 dark:text-white/90">
-        {initialData ? "Edit Client" : "Add Client"}
+        {initialData ? t("addClient.editTitle") : t("addClient.addTitle")}
       </h3>
 
       <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
         <div>
-          <Label htmlFor="client-first-name">First Name</Label>
+          <Label htmlFor="client-first-name">{t("profile.firstName")}</Label>
           <Input
             id="client-first-name"
             name="firstName"
             value={form.firstName}
             onChange={handleChange}
-            placeholder="Enter first name"
+            placeholder={t("addClient.placeholders.firstName")}
             error={Boolean(errors.firstName)}
             hint={errors.firstName}
           />
         </div>
         <div>
-          <Label htmlFor="client-last-name">Last Name</Label>
+          <Label htmlFor="client-last-name">{t("profile.lastName")}</Label>
           <Input
             id="client-last-name"
             name="lastName"
             value={form.lastName}
             onChange={handleChange}
-            placeholder="Enter last name"
+            placeholder={t("addClient.placeholders.lastName")}
             error={Boolean(errors.lastName)}
             hint={errors.lastName}
           />
         </div>
         <div className="sm:col-span-2">
-          <Label htmlFor="client-email">Email</Label>
+          <Label htmlFor="client-email">{t("profile.email")}</Label>
           <Input
             id="client-email"
             name="email"
             type="email"
             value={form.email}
             onChange={handleChange}
-            placeholder="Enter email"
+            placeholder={t("addClient.placeholders.email")}
             error={Boolean(errors.email)}
             hint={errors.email}
           />
@@ -133,10 +135,10 @@ export default function ClientModal({
 
       <div className="mt-8 flex items-center justify-end gap-3">
         <Button size="sm" variant="outline" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
         <Button size="sm" onClick={handleSave}>
-          Save
+          {t("common.save")}
         </Button>
       </div>
     </Modal>

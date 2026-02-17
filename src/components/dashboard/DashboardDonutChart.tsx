@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
+import { useLanguage } from "@/context/LanguageContext";
 
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
@@ -18,6 +19,7 @@ export default function DashboardDonutChart({
   labels,
   series,
 }: Props) {
+  const { t } = useLanguage();
 
   const total = series.reduce((a, b) => a + b, 0);
 
@@ -45,7 +47,7 @@ export default function DashboardDonutChart({
             show: true,
             total: {
               show: true,
-              label: "Total",
+              label: t("dashboard.total"),
               formatter: () => total.toString(),
             },
           },

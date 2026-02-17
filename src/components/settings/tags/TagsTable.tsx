@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/table";
 import { PencilIcon, TrashBinIcon } from "@/icons";
 import Pagination from "@/components/tables/Pagination";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Tag {
   id: string;
@@ -25,6 +26,7 @@ interface Props {
 const ITEMS_PER_PAGE = 5;
 
 export default function TagsTable({ data, onEdit, onDelete }: Props) {
+  const { t } = useLanguage();
   const [currentPage, setCurrentPage] = useState(1);
 
   const totalPages = Math.max(1, Math.ceil(data.length / ITEMS_PER_PAGE));
@@ -47,13 +49,13 @@ export default function TagsTable({ data, onEdit, onDelete }: Props) {
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
                 >
-                  Tag Name
+                  {t("settings.common.tagName")}
                 </TableCell>
                 <TableCell
                   isHeader
                   className="px-5 py-3 font-medium text-gray-500 text-end text-theme-xs dark:text-gray-400"
                 >
-                  Actions
+                  {t("settings.common.actions")}
                 </TableCell>
               </TableRow>
             </TableHeader>
@@ -62,10 +64,10 @@ export default function TagsTable({ data, onEdit, onDelete }: Props) {
               {paginatedData.length === 0 ? (
                 <TableRow>
                   <TableCell className="px-5 py-8 text-start text-theme-sm text-gray-500 dark:text-gray-400">
-                    No tags added yet.
+                    {t("settings.tags.emptyTitle")}
                   </TableCell>
                   <TableCell className="px-4 py-8 text-end text-theme-sm text-gray-400 dark:text-gray-500">
-                    Add your first tag from the button above.
+                    {t("settings.tags.emptyDesc")}
                   </TableCell>
                 </TableRow>
               ) : (
@@ -83,7 +85,7 @@ export default function TagsTable({ data, onEdit, onDelete }: Props) {
                           type="button"
                           onClick={() => onEdit(row)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-gray-100 hover:text-brand-600 dark:text-gray-400 dark:hover:bg-white/[0.05] dark:hover:text-brand-400"
-                          aria-label={`Edit ${row.name}`}
+                          aria-label={`${t("common.edit")} ${row.name}`}
                         >
                           <PencilIcon />
                         </button>
@@ -91,7 +93,7 @@ export default function TagsTable({ data, onEdit, onDelete }: Props) {
                           type="button"
                           onClick={() => onDelete(row)}
                           className="inline-flex h-8 w-8 items-center justify-center rounded-lg text-gray-500 transition hover:bg-red-50 hover:text-red-600 dark:text-gray-400 dark:hover:bg-red-500/10 dark:hover:text-red-400"
-                          aria-label={`Delete ${row.name}`}
+                          aria-label={`${t("common.delete")} ${row.name}`}
                         >
                           <TrashBinIcon />
                         </button>

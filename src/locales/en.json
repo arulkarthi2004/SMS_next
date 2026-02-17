@@ -1,186 +1,367 @@
 {
-  "brand": {
-    "sms": "SMS"
-  },
-  "common": {
-    "home": "Home",
-    "menu": "Menu",
-    "backToDashboard": "Back to dashboard",
-    "resetFilters": "Reset Filters",
-    "close": "Close"
-  },
-  "header": {
-    "searchPlaceholder": "Search or type command...",
-    "language": "Language",
-    "english": "English",
-    "japanese": "Japanese"
-  },
-  "sidebar": {
-    "dashboard": "Dashboard",
-    "studentList": "Student List",
-    "management": "Management",
-    "addStudent": "Add Student",
-    "studentApproval": "Student Approval",
-    "addTeacher": "Add Teacher",
-    "addClient": "Add Client",
-    "settings": "Settings",
-    "college": "College",
-    "department": "Department",
-    "japaneseLevel": "Japanese Level",
-    "tags": "Tags",
-    "classification": "Classification",
-    "status": "Status"
-  },
-  "auth": {
-    "layoutTagline": "Platform for managing student data, roles, and academic operations efficiently.",
-    "signin": {
-      "title": "Sign In",
-      "subtitle": "Enter your email and password to sign in!",
-      "email": "Email",
-      "password": "Password",
-      "emailPlaceholder": "info@gmail.com",
-      "passwordPlaceholder": "Enter your password",
-      "keepLoggedIn": "Keep me logged in",
-      "forgotPassword": "Forgot password?",
-      "submit": "Sign in",
-      "noAccount": "Don't have an account?",
-      "signUp": "Sign Up"
-    },
-    "signup": {
-      "title": "Sign Up",
-      "subtitle": "Enter your details to sign up!",
-      "firstName": "First Name",
-      "lastName": "Last Name",
-      "firstNamePlaceholder": "Enter your first name",
-      "lastNamePlaceholder": "Enter your last name",
-      "email": "Email",
-      "password": "Password",
-      "emailPlaceholder": "Enter your email",
-      "passwordPlaceholder": "Enter your password",
-      "submit": "Sign Up",
-      "alreadyAccount": "Already have an account?",
-      "signIn": "Sign In"
-    }
-  },
-  "addStudent": {
-    "pageTitle": "Add Student",
-    "cardTitle": "Student Registration",
-    "cardDesc": "Fields marked with * are required.",
-    "submitSuccess": "Student details submitted successfully.",
-    "saveStudent": "Save Student",
-    "fields": {
-      "studentPhoto": "Student Photo",
-      "name": "Name",
-      "gender": "Gender",
-      "age": "Age",
-      "college": "College",
-      "collegeUrl": "College URL",
-      "department": "Department",
-      "graduationYear": "Graduation Year",
-      "dob": "DOB",
-      "japaneseLevel": "Japanese Level",
-      "selfIntro": "Self Intro",
-      "linkedInUrl": "LinkedIn URL",
-      "gitUrl": "Git URL",
-      "portfolioUrl": "Portfolio URL",
-      "email": "Email ID",
-      "whatsapp": "WhatsApp No."
-    },
-    "placeholders": {
-      "name": "Enter student name",
-      "age": "Enter age",
-      "collegeUrl": "https://college.example",
-      "graduationYear": "Enter graduation year",
-      "dob": "YYYY-MM-DD",
-      "selfIntro": "Write self introduction",
-      "linkedInUrl": "https://linkedin.com/in/username",
-      "gitUrl": "https://github.com/username",
-      "portfolioUrl": "https://portfolio.example",
-      "email": "student@example.com",
-      "whatsapp": "+1 555 555 5555"
-    },
-    "select": {
-      "gender": "Select gender",
-      "male": "Male",
-      "female": "Female",
-      "other": "Other",
-      "college": "Select college",
-      "department": "Select department",
-      "japaneseLevel": "Select Japanese level"
-    },
-    "errors": {
-      "photoRequired": "Student photo is required.",
-      "nameRequired": "Student name is required.",
-      "genderRequired": "Gender is required.",
-      "collegeRequired": "College is required.",
-      "linkedInRequired": "LinkedIn URL is required.",
-      "linkedInInvalid": "LinkedIn URL must start with http:// or https://",
-      "emailRequired": "Email ID is required.",
-      "emailInvalid": "Enter a valid email address."
-    }
-  },
-  "studentList": {
-    "pageTitle": "Student List",
-    "title": "Student Interactive Cards",
-    "desc": "Filter students and open detailed flip cards.",
-    "searchPlaceholder": "Search by name",
-    "allColleges": "All Colleges",
-    "allDepartments": "All Departments",
-    "allLevels": "All Levels",
-    "allStatus": "All Status",
-    "noResults": "No students match your filters.",
-    "college": "College",
-    "graduationYear": "Graduation year",
-    "japaneseLevel": "Japanese Level :",
-    "selfIntro": "Self Introduction",
-    "edit": "Edit student",
-    "delete": "Delete student",
-    "zoomOut": "Zoom out",
-    "zoomIn": "Zoom in",
-    "facebook": "Facebook",
-    "linkedIn": "LinkedIn",
-    "instagram": "Instagram",
-    "x": "X"
-  },
-  "studentApproval": {
-    "pageTitle": "Student Approval",
-    "title": "Student Approval Queue",
-    "desc": "Review student submissions and update approval decisions.",
-    "cards": {
-      "totalStudents": "Total Students",
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    },
-    "searchLabel": "Search by ID or Name",
-    "searchPlaceholder": "Search students",
-    "approvalStatus": "Approval Status",
-    "all": "All",
-    "classification": "Classification",
-    "status": "Status",
-    "tags": "Tags",
-    "selectTags": "Select tags",
-    "done": "Done",
-    "noStudents": "No students found. Try changing search or filter.",
-    "approve": "Approve",
-    "reject": "Reject",
-    "email": "Email",
-    "statuses": {
-      "pending": "Pending",
-      "approved": "Approved",
-      "rejected": "Rejected"
-    }
-  },
-  "addTeacher": {
-    "pageTitle": "Add Teacher",
-    "title": "Teacher Management",
-    "desc": "Create and manage teacher records.",
-    "add": "Add Teacher"
-  },
-  "addClient": {
-    "pageTitle": "Add Client",
-    "title": "Client Management",
-    "desc": "Create and manage client records.",
-    "add": "Add Client"
-  }
+    "brand":  {
+                  "sms":  "SMS"
+              },
+    "common":  {
+                   "home":  "Home",
+                   "menu":  "Menu",
+                   "backToDashboard":  "Back to dashboard",
+                   "resetFilters":  "Reset Filters",
+                   "close":  "Close",
+                   "cancel":  "Cancel",
+                   "save":  "Save",
+                   "saveChanges":  "Save Changes",
+                   "edit":  "Edit",
+                   "delete":  "Delete"
+               },
+    "header":  {
+                   "searchPlaceholder":  "Search or type command...",
+                   "language":  "Language",
+                   "english":  "English",
+                   "japanese":  "Japanese"
+               },
+    "sidebar":  {
+                    "dashboard":  "Dashboard",
+                    "studentList":  "Student List",
+                    "management":  "Management",
+                    "addStudent":  "Add Student",
+                    "studentApproval":  "Student Approval",
+                    "addTeacher":  "Add Teacher",
+                    "addClient":  "Add Client",
+                    "settings":  "Settings",
+                    "college":  "College",
+                    "department":  "Department",
+                    "japaneseLevel":  "Japanese Level",
+                    "tags":  "Tags",
+                    "classification":  "Classification",
+                    "status":  "Status"
+                },
+    "auth":  {
+                 "layoutTagline":  "Platform for managing student data, roles, and academic operations efficiently.",
+                 "signin":  {
+                                "title":  "Sign In",
+                                "subtitle":  "Enter your email and password to sign in!",
+                                "email":  "Email",
+                                "password":  "Password",
+                                "emailPlaceholder":  "info@gmail.com",
+                                "passwordPlaceholder":  "Enter your password",
+                                "keepLoggedIn":  "Keep me logged in",
+                                "forgotPassword":  "Forgot password?",
+                                "submit":  "Sign in",
+                                "noAccount":  "Don\u0027t have an account?",
+                                "signUp":  "Sign Up"
+                            },
+                 "signup":  {
+                                "title":  "Sign Up",
+                                "subtitle":  "Enter your details to sign up!",
+                                "firstName":  "First Name",
+                                "lastName":  "Last Name",
+                                "firstNamePlaceholder":  "Enter your first name",
+                                "lastNamePlaceholder":  "Enter your last name",
+                                "email":  "Email",
+                                "password":  "Password",
+                                "emailPlaceholder":  "Enter your email",
+                                "passwordPlaceholder":  "Enter your password",
+                                "submit":  "Sign Up",
+                                "alreadyAccount":  "Already have an account?",
+                                "signIn":  "Sign In"
+                            }
+             },
+    "addStudent":  {
+                       "pageTitle":  "Add Student",
+                       "cardTitle":  "Student Registration",
+                       "cardDesc":  "Fields marked with * are required.",
+                       "submitSuccess":  "Student details submitted successfully.",
+                       "saveStudent":  "Save Student",
+                       "fields":  {
+                                      "studentPhoto":  "Student Photo",
+                                      "name":  "Name",
+                                      "gender":  "Gender",
+                                      "age":  "Age",
+                                      "college":  "College",
+                                      "collegeUrl":  "College URL",
+                                      "department":  "Department",
+                                      "graduationYear":  "Graduation Year",
+                                      "dob":  "DOB",
+                                      "japaneseLevel":  "Japanese Level",
+                                      "selfIntro":  "Self Intro",
+                                      "linkedInUrl":  "LinkedIn URL",
+                                      "gitUrl":  "Git URL",
+                                      "portfolioUrl":  "Portfolio URL",
+                                      "email":  "Email ID",
+                                      "whatsapp":  "WhatsApp No."
+                                  },
+                       "placeholders":  {
+                                            "name":  "Enter student name",
+                                            "age":  "Enter age",
+                                            "collegeUrl":  "https://college.example",
+                                            "graduationYear":  "Enter graduation year",
+                                            "dob":  "YYYY-MM-DD",
+                                            "selfIntro":  "Write self introduction",
+                                            "linkedInUrl":  "https://linkedin.com/in/username",
+                                            "gitUrl":  "https://github.com/username",
+                                            "portfolioUrl":  "https://portfolio.example",
+                                            "email":  "student@example.com",
+                                            "whatsapp":  "+1 555 555 5555"
+                                        },
+                       "select":  {
+                                      "gender":  "Select gender",
+                                      "male":  "Male",
+                                      "female":  "Female",
+                                      "other":  "Other",
+                                      "college":  "Select college",
+                                      "department":  "Select department",
+                                      "japaneseLevel":  "Select Japanese level"
+                                  },
+                       "errors":  {
+                                      "photoRequired":  "Student photo is required.",
+                                      "nameRequired":  "Student name is required.",
+                                      "genderRequired":  "Gender is required.",
+                                      "collegeRequired":  "College is required.",
+                                      "linkedInRequired":  "LinkedIn URL is required.",
+                                      "linkedInInvalid":  "LinkedIn URL must start with http:// or https://",
+                                      "emailRequired":  "Email ID is required.",
+                                      "emailInvalid":  "Enter a valid email address."
+                                  }
+                   },
+    "studentList":  {
+                        "pageTitle":  "Student List",
+                        "title":  "Student Interactive Cards",
+                        "desc":  "Filter students and open detailed flip cards.",
+                        "searchPlaceholder":  "Search by name",
+                        "allColleges":  "All Colleges",
+                        "allDepartments":  "All Departments",
+                        "allLevels":  "All Levels",
+                        "allStatus":  "All Status",
+                        "noResults":  "No students match your filters.",
+                        "college":  "College",
+                        "graduationYear":  "Graduation year",
+                        "japaneseLevel":  "Japanese Level :",
+                        "selfIntro":  "Self Introduction",
+                        "edit":  "Edit student",
+                        "delete":  "Delete student",
+                        "zoomOut":  "Zoom out",
+                        "zoomIn":  "Zoom in",
+                        "facebook":  "Facebook",
+                        "linkedIn":  "LinkedIn",
+                        "instagram":  "Instagram",
+                        "x":  "X"
+                    },
+    "studentApproval":  {
+                            "pageTitle":  "Student Approval",
+                            "title":  "Student Approval Queue",
+                            "desc":  "Review student submissions and update approval decisions.",
+                            "cards":  {
+                                          "totalStudents":  "Total Students",
+                                          "pending":  "Pending",
+                                          "approved":  "Approved",
+                                          "rejected":  "Rejected"
+                                      },
+                            "searchLabel":  "Search by ID or Name",
+                            "searchPlaceholder":  "Search students",
+                            "approvalStatus":  "Approval Status",
+                            "all":  "All",
+                            "classification":  "Classification",
+                            "status":  "Status",
+                            "tags":  "Tags",
+                            "selectTags":  "Select tags",
+                            "done":  "Done",
+                            "noStudents":  "No students found. Try changing search or filter.",
+                            "approve":  "Approve",
+                            "reject":  "Reject",
+                            "email":  "Email",
+                            "statuses":  {
+                                             "pending":  "Pending",
+                                             "approved":  "Approved",
+                                             "rejected":  "Rejected"
+                                         }
+                        },
+    "addTeacher":  {
+                       "pageTitle":  "Add Teacher",
+                       "title":  "Teacher Management",
+                       "desc":  "Create and manage teacher records.",
+                       "add":  "Add Teacher",
+                       "addTitle":  "Add Teacher",
+                       "editTitle":  "Edit Teacher",
+                       "emptyTitle":  "No teachers added yet.",
+                       "emptyDesc":  "Add your first teacher from the button above.",
+                       "placeholders":  {
+                                            "firstName":  "Enter first name",
+                                            "lastName":  "Enter last name",
+                                            "email":  "Enter email"
+                                        },
+                       "errors":  {
+                                      "firstNameRequired":  "First name is required.",
+                                      "lastNameRequired":  "Last name is required.",
+                                      "emailRequired":  "Email is required.",
+                                      "emailInvalid":  "Enter a valid email address."
+                                  }
+                   },
+    "addClient":  {
+                      "pageTitle":  "Add Client",
+                      "title":  "Client Management",
+                      "desc":  "Create and manage client records.",
+                      "add":  "Add Client",
+                      "addTitle":  "Add Client",
+                      "editTitle":  "Edit Client",
+                      "emptyTitle":  "No clients added yet.",
+                      "emptyDesc":  "Add your first client from the button above.",
+                      "placeholders":  {
+                                           "firstName":  "Enter first name",
+                                           "lastName":  "Enter last name",
+                                           "email":  "Enter email"
+                                       },
+                      "errors":  {
+                                     "firstNameRequired":  "First name is required.",
+                                     "lastNameRequired":  "Last name is required.",
+                                     "emailRequired":  "Email is required.",
+                                     "emailInvalid":  "Enter a valid email address."
+                                 }
+                  },
+    "settings":  {
+                     "common":  {
+                                    "actions":  "Actions",
+                                    "location":  "Location",
+                                    "badge":  "Badge",
+                                    "collegeName":  "College Name",
+                                    "departmentName":  "Department Name",
+                                    "japaneseLevel":  "Japanese Level",
+                                    "tagName":  "Tag Name",
+                                    "classificationName":  "Classification Name",
+                                    "statusName":  "Status Name"
+                                },
+                     "college":  {
+                                     "pageTitle":  "College Settings",
+                                     "add":  "Add College",
+                                     "addTitle":  "Add College",
+                                     "editTitle":  "Edit College",
+                                     "emptyTitle":  "No colleges added yet.",
+                                     "emptyDesc":  "Add your first college from the button above.",
+                                     "placeholders":  {
+                                                          "name":  "Enter college name",
+                                                          "location":  "Enter location"
+                                                      },
+                                     "errors":  {
+                                                    "nameRequired":  "College name is required.",
+                                                    "locationRequired":  "Location is required."
+                                                }
+                                 },
+                     "department":  {
+                                        "pageTitle":  "Department Settings",
+                                        "add":  "Add Department",
+                                        "addTitle":  "Add Department",
+                                        "editTitle":  "Edit Department",
+                                        "emptyTitle":  "No departments added yet.",
+                                        "emptyDesc":  "Add your first department from the button above.",
+                                        "placeholders":  {
+                                                             "name":  "Enter department name"
+                                                         },
+                                        "errors":  {
+                                                       "nameRequired":  "Department name is required."
+                                                   }
+                                    },
+                     "japaneseLevel":  {
+                                           "pageTitle":  "Japanese Level Settings",
+                                           "add":  "Add Japanese Level",
+                                           "addTitle":  "Add Japanese Level",
+                                           "editTitle":  "Edit Japanese Level",
+                                           "emptyTitle":  "No Japanese levels added yet.",
+                                           "emptyDesc":  "Add your first Japanese level from the button above.",
+                                           "placeholders":  {
+                                                                "name":  "Enter Japanese level"
+                                                            },
+                                           "errors":  {
+                                                          "nameRequired":  "Japanese level is required."
+                                                      }
+                                       },
+                     "tags":  {
+                                  "pageTitle":  "Tags Settings",
+                                  "add":  "Add Tag",
+                                  "addTitle":  "Add Tag",
+                                  "editTitle":  "Edit Tag",
+                                  "emptyTitle":  "No tags added yet.",
+                                  "emptyDesc":  "Add your first tag from the button above.",
+                                  "placeholders":  {
+                                                       "name":  "Enter tag name"
+                                                   },
+                                  "errors":  {
+                                                 "nameRequired":  "Tag is required."
+                                             }
+                              },
+                     "classification":  {
+                                            "pageTitle":  "Classification Settings",
+                                            "add":  "Add Classification",
+                                            "addTitle":  "Add Classification",
+                                            "editTitle":  "Edit Classification",
+                                            "emptyTitle":  "No classifications added yet.",
+                                            "emptyDesc":  "Add your first classification from the button above.",
+                                            "placeholders":  {
+                                                                 "name":  "Enter classification name"
+                                                             },
+                                            "errors":  {
+                                                           "nameRequired":  "Classification is required."
+                                                       }
+                                        },
+                     "status":  {
+                                    "pageTitle":  "Status Settings",
+                                    "add":  "Add Status",
+                                    "addTitle":  "Add Status",
+                                    "editTitle":  "Edit Status",
+                                    "emptyTitle":  "No statuses added yet.",
+                                    "emptyBadgeHint":  "Status badges will be auto colored.",
+                                    "emptyDesc":  "Add your first status from the button above.",
+                                    "placeholders":  {
+                                                         "name":  "Enter status name"
+                                                     },
+                                    "errors":  {
+                                                   "nameRequired":  "Status is required."
+                                               }
+                                }
+                 },
+    "profile":  {
+                    "pageTitle":  "Profile",
+                    "editTitle":  "Edit Personal Information",
+                    "editDesc":  "Update your details to keep your profile up-to-date.",
+                    "personalInfo":  "Personal Information",
+                    "firstName":  "First Name",
+                    "lastName":  "Last Name",
+                    "email":  "Email Address",
+                    "bio":  "Bio"
+                },
+    "dashboard":  {
+                      "totalStudents":  "Total Students",
+                      "activeStudents":  "Active Students",
+                      "department":  "Department",
+                      "page":  "Page",
+                      "of":  "of",
+                      "prev":  "Prev",
+                      "next":  "Next",
+                      "viewMore":  "View More",
+                      "export":  "Export",
+                      "genderDistribution":  "Gender Distribution",
+                      "male":  "Male",
+                      "female":  "Female",
+                      "japaneseLevelDistribution":  "Japanese Level Distribution",
+                      "studentStatus":  "Student Status",
+                      "studentsByCollege":  "Students by College",
+                      "students":  "Students",
+                      "noCollegeData":  "No college data available",
+                      "total":  "Total",
+                      "status":  {
+                                     "waiting":  "Pending",
+                                     "studying":  "Studying",
+                                     "online":  "Online",
+                                     "dropout":  "Dropout",
+                                     "placed":  "Placed"
+                                 },
+                      "colleges":  {
+                                       "tokyo":  "Tokyo Univ",
+                                       "osaka":  "Osaka Univ",
+                                       "kyoto":  "Kyoto Univ",
+                                       "nagoya":  "Nagoya Univ",
+                                       "hokkaido":  "Hokkaido Univ",
+                                       "tohoku":  "Tohoku Univ",
+                                       "chiba":  "Chiba Univ"
+                                   }
+                  }
 }

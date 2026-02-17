@@ -5,6 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface CollegeFormData {
   name: string;
@@ -29,6 +30,7 @@ export default function CollegeModal({
   onSave,
   initialData,
 }: Props) {
+  const { t } = useLanguage();
   const [form, setForm] = useState<CollegeFormData>(
     initialData ?? {
       name: "",
@@ -62,11 +64,11 @@ export default function CollegeModal({
     const nextErrors: CollegeFormErrors = {};
 
     if (!trimmedForm.name) {
-      nextErrors.name = "College name is required.";
+      nextErrors.name = t("settings.college.errors.nameRequired");
     }
 
     if (!trimmedForm.location) {
-      nextErrors.location = "Location is required.";
+      nextErrors.location = t("settings.college.errors.locationRequired");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -85,31 +87,31 @@ export default function CollegeModal({
       className="m-4 max-w-[560px] p-6 sm:p-7"
     >
       <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90 mb-6">
-        {initialData ? "Edit College" : "Add College"}
+        {initialData ? t("settings.college.editTitle") : t("settings.college.addTitle")}
       </h3>
 
       <div className="space-y-5">
         <div>
-          <Label htmlFor="college-name">College Name</Label>
+          <Label htmlFor="college-name">{t("settings.common.collegeName")}</Label>
           <Input
             id="college-name"
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Enter college name"
+            placeholder={t("settings.college.placeholders.name")}
             error={Boolean(errors.name)}
             hint={errors.name}
           />
         </div>
 
         <div>
-          <Label htmlFor="college-location">Location</Label>
+          <Label htmlFor="college-location">{t("settings.common.location")}</Label>
           <Input
             id="college-location"
             name="location"
             value={form.location}
             onChange={handleChange}
-            placeholder="Enter location"
+            placeholder={t("settings.college.placeholders.location")}
             error={Boolean(errors.location)}
             hint={errors.location}
           />
@@ -118,11 +120,11 @@ export default function CollegeModal({
 
       <div className="mt-8 flex items-center justify-end gap-3">
         <Button size="sm" variant="outline" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
 
         <Button size="sm" onClick={handleSave}>
-          Save
+          {t("common.save")}
         </Button>
       </div>
     </Modal>

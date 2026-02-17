@@ -8,6 +8,7 @@ import { PlusIcon } from "@/icons";
 import { useModal } from "@/hooks/useModal";
 import StatusTable from "@/components/settings/status/StatusTable";
 import StatusModal from "@/components/settings/status/StatusModal";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface Status {
   id: string;
@@ -15,6 +16,7 @@ interface Status {
 }
 
 export default function StatusPage() {
+  const { t } = useLanguage();
   const [statuses, setStatuses] = useState<Status[]>([]);
   const [editing, setEditing] = useState<Status | null>(null);
   const [modalInstanceKey, setModalInstanceKey] = useState(0);
@@ -51,15 +53,12 @@ export default function StatusPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle="Status Settings" />
+      <PageBreadcrumb pageTitle={t("settings.status.pageTitle")} />
 
-      <ComponentCard
-        title="Status Master"
-        desc="Create and manage statuses available in master settings."
-      >
+      <ComponentCard>
         <div className="flex justify-end">
           <Button size="sm" onClick={handleAdd} startIcon={<PlusIcon />}>
-            Add Status
+            {t("settings.status.add")}
           </Button>
         </div>
 

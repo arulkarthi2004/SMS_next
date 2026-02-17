@@ -201,10 +201,7 @@ export default function AddStudentPage() {
     <>
       <PageBreadcrumb pageTitle={t("addStudent.pageTitle")} />
 
-      <ComponentCard
-        title={t("addStudent.cardTitle")}
-        desc={t("addStudent.cardDesc")}
-      >
+      <ComponentCard>
         {submitted && (
           <div className="rounded-lg border border-success-200 bg-success-50 px-4 py-3 text-sm text-success-700 dark:border-success-500/20 dark:bg-success-500/10 dark:text-success-400">
             {t("addStudent.submitSuccess")}

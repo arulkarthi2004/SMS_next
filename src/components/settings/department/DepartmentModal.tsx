@@ -5,6 +5,7 @@ import { Modal } from "@/components/ui/modal";
 import Button from "@/components/ui/button/Button";
 import Input from "@/components/form/input/InputField";
 import Label from "@/components/form/Label";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface DepartmentFormData {
   name: string;
@@ -27,6 +28,7 @@ export default function DepartmentModal({
   onSave,
   initialData,
 }: Props) {
+  const { t } = useLanguage();
   const [form, setForm] = useState<DepartmentFormData>(
     initialData ?? {
       name: "",
@@ -58,7 +60,7 @@ export default function DepartmentModal({
     const nextErrors: DepartmentFormErrors = {};
 
     if (!trimmedForm.name) {
-      nextErrors.name = "Department name is required.";
+      nextErrors.name = t("settings.department.errors.nameRequired");
     }
 
     if (Object.keys(nextErrors).length > 0) {
@@ -77,18 +79,20 @@ export default function DepartmentModal({
       className="m-4 max-w-[560px] p-6 sm:p-7"
     >
       <h3 className="mb-6 text-lg font-semibold text-gray-800 dark:text-white/90">
-        {initialData ? "Edit Department" : "Add Department"}
+        {initialData
+          ? t("settings.department.editTitle")
+          : t("settings.department.addTitle")}
       </h3>
 
       <div className="space-y-5">
         <div>
-          <Label htmlFor="department-name">Department Name</Label>
+          <Label htmlFor="department-name">{t("settings.common.departmentName")}</Label>
           <Input
             id="department-name"
             name="name"
             value={form.name}
             onChange={handleChange}
-            placeholder="Enter department name"
+            placeholder={t("settings.department.placeholders.name")}
             error={Boolean(errors.name)}
             hint={errors.name}
           />
@@ -97,11 +101,11 @@ export default function DepartmentModal({
 
       <div className="mt-8 flex items-center justify-end gap-3">
         <Button size="sm" variant="outline" onClick={onClose}>
-          Cancel
+          {t("common.cancel")}
         </Button>
 
         <Button size="sm" onClick={handleSave}>
-          Save
+          {t("common.save")}
         </Button>
       </div>
     </Modal>

@@ -235,7 +235,7 @@ export default function StudentListPage() {
     <>
       <PageBreadcrumb pageTitle={t("studentList.pageTitle")} />
 
-      <ComponentCard title={t("studentList.title")} desc={t("studentList.desc")}>
+      <ComponentCard>
         <div className="mb-6 grid grid-cols-1 gap-3 rounded-xl border border-gray-200 bg-white p-4 dark:border-white/[0.05] dark:bg-white/[0.03] md:grid-cols-2 xl:grid-cols-6">
           <input
             value={search}
