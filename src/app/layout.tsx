@@ -4,6 +4,7 @@ import "flatpickr/dist/flatpickr.css";
 import { SidebarProvider } from '@/context/SidebarContext';
 import { ThemeProvider } from '@/context/ThemeContext';
 import { LanguageProvider } from '@/context/LanguageContext';
+import ReduxProvider from "@/store/provider";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -17,11 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`${outfit.className} dark:bg-gray-900`}>
+        <ReduxProvider>
         <ThemeProvider>
           <LanguageProvider>
             <SidebarProvider>{children}</SidebarProvider>
           </LanguageProvider>
         </ThemeProvider>
+        </ReduxProvider>
       </body>
     </html>
   );

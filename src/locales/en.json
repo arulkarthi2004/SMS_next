@@ -6,6 +6,7 @@
                    "home":  "Home",
                    "menu":  "Menu",
                    "backToDashboard":  "Back to dashboard",
+                   "backToSignIn":  "Back to Sign In",
                    "resetFilters":  "Reset Filters",
                    "close":  "Close",
                    "cancel":  "Cancel",

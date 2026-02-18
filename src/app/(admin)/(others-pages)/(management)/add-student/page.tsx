@@ -11,6 +11,7 @@ import Button from "@/components/ui/button/Button";
 import flatpickr from "flatpickr";
 import { Japanese } from "flatpickr/dist/l10n/ja";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAppSelector } from "@/store/hooks";
 
 interface StudentFormData {
   photo: File | null;
@@ -67,6 +68,9 @@ const initialFormData: StudentFormData = {
 
 export default function AddStudentPage() {
   const { t, language } = useLanguage();
+  const role = useAppSelector((state) => state.auth.user?.role);
+  const isStudentRole = role === "student";
+  const studentPageTitle = language === "ja" ? "学生編集" : "Edit Student";
   const [form, setForm] = useState<StudentFormData>(initialFormData);
   const [errors, setErrors] = useState<StudentFormErrors>({});
   const [submitted, setSubmitted] = useState(false);
@@ -103,7 +107,7 @@ export default function AddStudentPage() {
         dobPickerRef.current.destroy();
       }
     };
-  }, []);
+  }, [language]);
 
   useEffect(() => {
     if (dobPickerRef.current && !Array.isArray(dobPickerRef.current)) {
@@ -199,7 +203,7 @@ export default function AddStudentPage() {
 
   return (
     <>
-      <PageBreadcrumb pageTitle={t("addStudent.pageTitle")} />
+      <PageBreadcrumb pageTitle={isStudentRole ? studentPageTitle : t("addStudent.pageTitle")} />
 
       <ComponentCard>
         {submitted && (
@@ -446,7 +450,7 @@ export default function AddStudentPage() {
 
           <div className="flex justify-end">
             <Button type="submit" size="sm">
-              {t("addStudent.saveStudent")}
+              {isStudentRole ? t("common.saveChanges") : t("addStudent.saveStudent")}
             </Button>
           </div>
         </form>

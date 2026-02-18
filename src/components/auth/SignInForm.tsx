@@ -7,23 +7,67 @@ import { ChevronLeftIcon, EyeCloseIcon, EyeIcon } from "@/icons";
 import Link from "next/link";
 import React, { useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
+import { useAppDispatch } from "@/store/hooks";
+import { setCredentials } from "@/store/slices/authSlice";
+import { loginApi } from "@/api/authApi";
+import { useRouter } from "next/navigation";
+import type { AxiosError } from "axios";
 
 export default function SignInForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [authError, setAuthError] = useState("");
+  const dispatch = useAppDispatch();
+  const router = useRouter();
+
   const [showPassword, setShowPassword] = useState(false);
   const [isChecked, setIsChecked] = useState(false);
   const { t } = useLanguage();
 
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      setLoading(true);
+      setAuthError("");
+
+      const data = await loginApi(email, password);
+
+      localStorage.setItem("token", data.token);
+
+      dispatch(
+        setCredentials({
+          user: data.user,
+          token: data.token,
+        })
+      );
+
+      const routeByRole: Record<string, string> = {
+        admin: "/",
+        teacher: "/student-list",
+        client: "/student-list",
+        student: "/student-list",
+      };
+
+      router.replace(routeByRole[data.user.role] ?? "/");
+    } catch (error) {
+      const axiosError = error as AxiosError<{
+        message?: string;
+        data?: { error?: string };
+      }>;
+      const message =
+        axiosError.response?.data?.message ||
+        axiosError.response?.data?.data?.error ||
+        "Login failed. Please check your credentials.";
+      setAuthError(message);
+      console.error("Login failed", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
     <div className="flex flex-col flex-1 lg:w-1/2 w-full">
-      <div className="w-full max-w-md sm:pt-10 mx-auto mb-5">
-        <Link
-          href="/"
-          className="inline-flex items-center text-sm text-gray-500 transition-colors hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300"
-        >
-          <ChevronLeftIcon />
-          {t("common.backToDashboard")}
-        </Link>
-      </div>
       <div className="flex flex-col justify-center flex-1 w-full max-w-md mx-auto">
         <div>
           <div className="mb-5 sm:mb-8">
@@ -35,13 +79,21 @@ export default function SignInForm() {
             </p>
           </div>
           <div>
-            <form>
+            <form onSubmit={handleSubmit}>
               <div className="space-y-6">
                 <div>
                   <Label>
                     {t("auth.signin.email")} <span className="text-error-500">*</span>{" "}
                   </Label>
-                  <Input placeholder={t("auth.signin.emailPlaceholder")} type="email" />
+                  <Input
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value);
+                      if (authError) setAuthError("");
+                    }}
+                    placeholder={t("auth.signin.emailPlaceholder")}
+                    type="email"
+                  />
                 </div>
                 <div>
                   <Label>
@@ -49,6 +101,11 @@ export default function SignInForm() {
                   </Label>
                   <div className="relative">
                     <Input
+                      value={password}
+                      onChange={(e) => {
+                        setPassword(e.target.value);
+                        if (authError) setAuthError("");
+                      }}
                       type={showPassword ? "text" : "password"}
                       placeholder={t("auth.signin.passwordPlaceholder")}
                     />
@@ -78,9 +135,17 @@ export default function SignInForm() {
                     {t("auth.signin.forgotPassword")}
                   </Link>
                 </div>
+                {authError ? (
+                  <div className="rounded-lg border border-error-200 bg-error-50 px-4 py-3 text-sm text-error-700 dark:border-error-500/20 dark:bg-error-500/10 dark:text-error-400">
+                    {authError}
+                  </div>
+                ) : null}
                 <div>
-                  <Button className="w-full" size="sm">
+                  {/* <Button className="w-full" size="sm">
                     {t("auth.signin.submit")}
+                  </Button> */}
+                  <Button className="w-full" size="sm" type="submit" disabled={loading}>
+                    {loading ? "Loading..." : t("auth.signin.submit")}
                   </Button>
                 </div>
               </div>
